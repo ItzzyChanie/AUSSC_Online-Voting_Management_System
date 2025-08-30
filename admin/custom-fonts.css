@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
+.main-header, 
+.main-header *:not(.fa):not(.glyphicon):not(.sidebar-toggle), 
+.main-sidebar, 
+.main-sidebar *:not(.fa):not(.glyphicon):not(.sidebar-toggle), 
+.small-box, 
+.small-box *:not(.fa):not(.glyphicon):not(.sidebar-toggle), 
+.sidebar-menu, 
+.sidebar-menu *:not(.fa):not(.glyphicon):not(.sidebar-toggle), 
+.user-panel, 
+.user-panel *:not(.fa):not(.glyphicon):not(.sidebar-toggle) {
+    font-family: 'Poppins', Arial, sans-serif !important;
+}
+.main-header {
+    background-color: #d32f2f !important;
+    color: #fff !important;
+}
