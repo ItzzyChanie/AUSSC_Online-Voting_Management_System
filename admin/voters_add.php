@@ -2,19 +2,19 @@
 	include 'includes/session.php';
 
 	if (isset($_POST['add'])) {
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$student_id = $_POST['student_id'];
-		$password = $_POST['password'];
-		$filename = $_FILES['photo']['name'];
+		$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+		$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+		$student_id = mysqli_real_escape_string($conn, $_POST['student_id']);
+		$password = mysqli_real_escape_string($conn, $_POST['password']);
+		$filename = mysqli_real_escape_string($conn, $_FILES['photo']['name']);
 		
 		if (!empty($filename)) {
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
 		}
 
-	$sql = "INSERT INTO voters (student_id, password, firstname, lastname, photo) VALUES ('$student_id', '$password', '$firstname', '$lastname', '$filename')";
+		$sql = "INSERT INTO voters (student_id, password, firstname, lastname, photo) VALUES ('$student_id', '$password', '$firstname', '$lastname', '$filename')";
 		
-	if ($conn->query($sql)) {
+		if ($conn->query($sql)) {
 			$_SESSION['success'] = 'Voter added successfully';
 		}
 		else{ 

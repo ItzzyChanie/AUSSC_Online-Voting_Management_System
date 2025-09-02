@@ -2,11 +2,11 @@
 	include 'includes/session.php';
 
 	if (isset($_POST['add'])) {
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$position = $_POST['position'];
-		$platform = $_POST['platform'];
-		$filename = $_FILES['photo']['name'];
+		$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+		$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+		$position = mysqli_real_escape_string($conn, $_POST['position']);
+		$platform = mysqli_real_escape_string($conn, $_POST['platform']);
+		$filename = mysqli_real_escape_string($conn, $_FILES['photo']['name']);
 
 		if (!empty($filename)) {
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
