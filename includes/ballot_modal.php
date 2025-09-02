@@ -22,7 +22,6 @@ if (!isset($voter) || !isset($conn)) {
     </div>
 </div>
 
-<!-- Platform -->
 <style>
   #platform .modal-dialog {
     display: flex;
@@ -61,7 +60,7 @@ if (!isset($voter) || !isset($conn)) {
   #platform .modal-header {
     background: #d32f2f;
     color: #fff;
-    border-radius: 18px 18px 0 0;
+    border-radius: 11px 11px 0 0;
     padding: 18px 28px 12px 28px;
     border-bottom: 1px solid #e0d6c3;
     text-align: center;
@@ -98,7 +97,26 @@ if (!isset($voter) || !isset($conn)) {
     background: #d32f2f;
     color: #fff;
   }
+
+  @media (max-width: 768px) {
+    #platform .modal-dialog {
+      max-width: 95% !important;
+      width: auto !important;
+      margin: 10px auto;
+    }
+
+    #platform .modal-content {
+      min-width: unset !important;
+      width: 100% !important;
+      border-radius: 12px;
+    }
+
+    #platform .modal-body {
+      padding: 16px;
+    }
+  }
 </style>
+
 <div class="modal fade" id="platform">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -117,16 +135,14 @@ if (!isset($voter) || !isset($conn)) {
     </div>
 </div>
 
-
-<!-- Enhanced View Ballot Modal -->
 <style>
   #view .modal-dialog {
-  display: flex;
-  align-items: center;
-  min-height: 80vh;
-  justify-content: center;
-  max-width: 900px;
-  width: 900px;
+    display: flex;
+    align-items: center;
+    min-height: 90vh;
+    justify-content: center;
+    max-width: 900px;
+    width: 900px;
   }
   #view .modal-content {
     background: linear-gradient(135deg, #fffbe9 0%, #fbeaea 100%);
@@ -140,12 +156,12 @@ if (!isset($voter) || !isset($conn)) {
     width: 60%;
   }
   #view .modal-header {
-  background: #d32f2f;
-  color: #fff;
-  border-radius: 18px 18px 0 0;
-  padding: 18px 28px 12px 28px;
-  border-bottom: 1px solid #e0d6c3;
-  text-align: left;
+    background: #d32f2f;
+    color: #fff;
+    border-radius: 14px 14px 0 0;
+    padding: 18px 28px 12px 28px;
+    border-bottom: 1px solid #e0d6c3;
+    text-align: left;
   }
   #view .modal-title {
     font-size: 1.9rem;
@@ -157,9 +173,9 @@ if (!isset($voter) || !isset($conn)) {
     margin-bottom: 6px;
   }
   #view .modal-body {
-  padding: 0px 32px;
-  background: transparent;
-  text-align: left;
+    padding: 0px 32px;
+    background: transparent;
+    text-align: left;
   }
   #view .modal-footer {
     background: #fbeaea;
@@ -192,24 +208,68 @@ if (!isset($voter) || !isset($conn)) {
     border-bottom: none;
   }
   .votelist-label {
-  flex: 0 0 auto;
-  text-align: left;
-  font-weight: 700;
-  color: #d32f2f;
-  padding-right: 18px;
-  min-width: 160px;
-  margin-right: 0;
-  font-size: 1.6rem;
+    flex: 0 0 auto;
+    text-align: left;
+    font-weight: 700;
+    color: #d32f2f;
+    padding-right: 18px;
+    min-width: 160px;
+    margin-right: 0;
+    font-size: 1.6rem;
   }
   .votelist-value {
-  flex: 1;
-  text-align: left;
-  color: #333;
-  font-weight: 700px;
-  margin-left: 20px;
-  font-size: 1.5rem;
+    flex: 1;
+    text-align: left;
+    color: #333;
+    font-weight: 700px;
+    margin-left: 20px;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    #view .modal-dialog {
+      max-width: 90% !important;
+      width: 90% !important;
+      margin: auto;
+    }
+
+    #view .modal-content {
+      width: 100% !important;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
+    #view .modal-title {
+      font-size: 1.4rem;
+    }
+
+    #view .modal-body {
+      padding: 12px 16px;
+    }
+
+    #view .modal-footer {
+      padding: 12px 16px;
+    }
+
+    .votelist-label {
+      font-size: 1.2rem;
+      min-width: 120px;
+      padding-right: 10px;
+    }
+
+    .votelist-value {
+      font-size: 1.1rem;
+      margin-left: 10px;
+    }
+
+    #view .btn-close, 
+    #view .btn-default {
+      font-size: 12px;
+      padding: 6px 14px;
+    }
   }
 </style>
+
 <div class="modal fade" id="view">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -218,6 +278,7 @@ if (!isset($voter) || !isset($conn)) {
                   <span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title"><b>Your Votes</b></h4>
             </div>
+
             <div class="modal-body">
               <?php
                 $id = $voter['id'];
@@ -233,6 +294,7 @@ if (!isset($voter) || !isset($conn)) {
                 }
               ?>
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default btn-curve pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
             </div>

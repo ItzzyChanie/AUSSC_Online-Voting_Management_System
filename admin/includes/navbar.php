@@ -12,7 +12,7 @@
   <a href="#" class="logo " style="background-color: #d32f2f">
 
     <!-- mini logo for sidebar mini 50x50 pixels -->
-  <span class="logo-mini" style="background-color: #d32f2f"><b>AU</b>ES</span>
+  <span class="logo-mini" style="background-color: #d32f2f"><b>AU</b>VS</span>
 
   <!-- logo for regular state and mobile devices -->
   <span class="logo-lg " 
@@ -24,7 +24,7 @@
 
     <marquee behavior="scroll" direction="left" style="display: flex; align-items: center;">
     <img src="/votesystem/images/AUSSC_logo.png" alt="AUSSC Logo" style="height:45px; position: relative; top: -3px;">
-      AUSSC Online Voting System
+      AUSSC - Voting Management System
     </marquee>
   </span>
   </a>

@@ -2,23 +2,28 @@
 session_start();
 include 'includes/conn.php';
 $error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$student_id = $_POST['student_id'];
 		$password = $_POST['password'];
 		$sql = "SELECT * FROM voters WHERE student_id = '$student_id'";
 		$query = $conn->query($sql);
+
 		if ($query->num_rows < 1) {
-				$error = 'Cannot find voter with the Student ID';
-		} else {
-				$row = $query->fetch_assoc();
+			$error = 'Cannot find voter with the Student ID';
+		} 
+		else {
+			$row = $query->fetch_assoc();
+
 		if ($password == $row['password']) {
 			$_SESSION['voter'] = $row['id'];
 			header('Location: home.php');
 			exit();
-				} else {
-						$error = 'Incorrect password';
-				}
+		} 
+		else {
+			$error = 'Incorrect password';
 		}
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -29,101 +34,374 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<title>Voter Login</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 	<style>
-		body {
-			position: relative;
-			min-height: 100vh;
-			font-family: 'Montserrat', Arial, sans-serif;
-			background: url('images/Background.png') no-repeat center center fixed;
-			background-size: cover;
+	body {
+		position: relative;
+		min-height: 100vh;
+		font-family: 'Montserrat', Arial, sans-serif;
+		background: url('images/Background.png') no-repeat center center fixed;
+		background-size: cover;
+	}
+	.main-logo {
+		width: 40px;
+		height: 40px;
+		background: #d32f2f;
+		border-radius: 8px;
+		display: inline-block;
+		margin-right: 10px;
+	}
+	.nav-link.active {
+		font-weight: bold;
+		border-bottom: 2px solid #d32f2f;
+	}
+	.btn-red {
+		background: #d32f2f;
+		color: #fff;
+		font-weight: bold;
+		font-size: 1.2rem;
+		border-radius: 8px;
+		box-shadow: 2px 2px 6px #bdbdbd;
+		border: none;
+	}
+	.btn-red:hover {
+		background: #b71c1c;
+		color: #fff;
+	}
+
+	.shadow-input {
+		box-shadow: 2px 2px 6px #bdbdbd;
+		border-radius: 8px;
+		border: none;
+		background: #fbeaea;
+	}
+	.welcome-title {
+		font-size: 2.8rem;
+		font-weight: 700;
+		color: #d32f2f;
+		margin-bottom: 0.5rem;
+	}
+	.welcome-sub {
+		font-size: 2.8rem;
+		font-weight: 700;
+		color: #d32f2f;
+		margin-bottom: 1.5rem;
+	}
+	.explore-btn {
+		background: #d32f2f;
+		color: #ffffffff;
+		font-weight: bold;
+		border-radius: 8px;
+		box-shadow: 2px 2px 6px #bdbdbd;
+		border: none;
+		padding: 0.7rem 2rem;
+		font-size: 1.1rem;
+	}
+	.explore-btn:hover {
+		background: #b71c1c;
+		color: #fff;
+	}
+	.social-btn:last-child { margin-right: 0; }
+	.login-form label { font-weight: 500; }
+	.login-form .form-check-label { font-weight: 400; }
+	.forgot-link { font-weight: 600; color: #222; text-decoration: none; }
+	.forgot-link:hover { color: #d32f2f; }
+
+	@media (max-width: 900px) {
+		.main-row { flex-direction: column; }
+		.left-col, .right-col { width: 100%; }
+		.right-col { margin-top: 2rem; }
+	}
+
+	@media (max-width: 600px) {
+	body {
+		padding: 0;
+	}
+	.left-col {
+		display: none !important;
+	}
+	.mobile-center-content {
+		display: flex !important;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.5rem;
+	}
+	.mobile-center-content .explore-btn {
+		margin-bottom: 1.2rem;
+	}
+	.login-form {
+		min-width: unset !important;
+		max-width: 100% !important;
+		width: 100%;
+		margin: 0 30px 50px 30px;
+	}
+	.right-col {
+		padding: 0 !important;
+		width: 100%;
+		margin: 0;
+		justify-content: flex-start !important;
+	}
+	.desktop-nav {
+		display: none !important;
+	}
+	.mobile-nav {
+		display: flex !important;
+	}
+	.header-row {
+		background: none !important;
+		box-shadow: none !important;
+	}
+	.login-form img[alt="AUSSC Logo"] {
+		display: block;
+		margin: 0 auto 1rem auto;
+		height: 140px !important;
+		position: static !important;
+		padding-right: 62px !important;
+	}
+	.login-form .form-check-label,
+	.login-form .forgot-link {
+		font-size: 0.85rem;
+	}
+}
+
+	@media (min-width: 601px) {
+		.mobile-nav {
+			display: none !important;
 		}
-		.main-logo {
-			width: 40px;
-			height: 40px;
-			background: #d32f2f;
-			border-radius: 8px;
-			display: inline-block;
-			margin-right: 10px;
+		.mobile-center-content {
+			display: none !important;
 		}
-		.nav-link.active {
-			font-weight: bold;
-			border-bottom: 2px solid #d32f2f;
-		}
-		.btn-red {
-			background: #d32f2f;
-			color: #fff;
-			font-weight: bold;
-			font-size: 1.2rem;
-			border-radius: 8px;
-			box-shadow: 2px 2px 6px #bdbdbd;
-			border: none;
-		}
-		.btn-red:hover {
-			background: #b71c1c;
-			color: #fff;
+	}
+
+	.burger {
+		width: 34px;
+		height: 34px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		z-index: 20;
+	}
+	.burger span {
+		display: block;
+		width: 26px;
+		height: 4px;
+		background: #d32f2f;
+		margin: 4px 0;
+		border-radius: 2px;
+		transition: all 0.3s;
+	}
+
+	.mobile-menu-panel {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 220px;
+		height: 100vh;
+		background: #fff;
+		box-shadow: -2px 0 10px rgba(0,0,0,0.08);
+		display: none;
+		flex-direction: column;
+		padding: 2.5rem 1.5rem 1rem 1.5rem;
+		z-index: 100;
+		animation: slideIn 0.2s;
+	}
+	@keyframes slideIn {
+		from { right: -220px; }
+		to { right: 0; }
+	}
+	.mobile-menu-panel.show {
+		display: flex;
+	}
+	.mobile-menu-panel a {
+		font-size: 1.1rem;
+		color: #d32f2f;
+		font-weight: 600;
+		margin-bottom: 1.2rem;
+		text-decoration: none;
+	}
+	.mobile-menu-panel .close-btn {
+		position: absolute;
+		top: 1.1rem;
+		right: 1.1rem;
+		font-size: 2rem;
+		color: #d32f2f;
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	.header-logo {
+		height: 55px;
+		max-width: 100%;
+		z-index: 2;
+		position: relative;
+		left: 40px;
+		bottom: 20px;
+	}
+
+	@media (min-width: 768px) {
+	.header-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		padding: 1.5rem 2rem;
+		flex-direction: row !important;
+		position: relative;
+	}
+
+	.logo-container {
+		position: relative;
+		left: 20px;
+		top: 0;
+		margin-right: auto;
+	}
+
+	.header-logo {
+		height: 90px;
+	}
+
+	.desktop-nav.nav-center {
+		position: absolute;
+		top: 25px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex !important;
+		justify-content: center;
+		align-items: center;
+		gap: 2.5rem;
+	}
+
+	.desktop-nav.nav-center li a {
+		padding: 0 1rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: #000;
+	}
+
+	.desktop-nav.nav-center li a.active {
+		font-weight: 700;
+		border-bottom: 2px solid #d32f2f;
+	}
+	}
+
+	.logo-container {
+		position: relative;
+		z-index: 2;
+	}
+
+	.nav-center {
+		gap: 2.5rem;
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+		top: 0;
+		z-index: 1;
+	}
+
+	.nav-center li a {
+		padding: 0 1rem;
+		font-weight: 500;
+	}
+
+	.nav-center li a.active {
+		font-weight: 700;
+		border-bottom: 2px solid #d32f2f;
+	}
+
+	@media (max-width: 767px) {
+		.header-row {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.75rem 1rem !important;
 		}
 
-		.shadow-input {
-			box-shadow: 2px 2px 6px #bdbdbd;
-			border-radius: 8px;
-			border: none;
-			background: #fbeaea;
+		.logo-container {
+			position: relative;
+			left: 0;
+			top: 0;
+			margin-left: 0;
 		}
-		.welcome-title {
-			font-size: 2.8rem;
-			font-weight: 700;
+
+		.header-logo {
+			height: 70px;
+			left: 0;
+			bottom: 0;
+			top: 2px;
+		}
+
+		.mobile-nav {
+			position: relative;
+			top: 0;
+			right: 0;
+		}
+	}
+	.logo-text-mobile {
+		display: none;
+	}
+	@media (max-width: 600px) {
+		.logo-container {
+			display: flex;
+			align-items: center;
+		}
+		.logo-text-mobile {
+			display: inline-block;
+			margin-left: -8px;
+			font-size: 1rem;
+			font-weight: 600;
 			color: #d32f2f;
-			margin-bottom: 0.5rem;
 		}
-		.welcome-sub {
-			font-size: 2.8rem;
-			font-weight: 700;
-			color: #d32f2f;
-			margin-bottom: 1.5rem;
-		}
-		.explore-btn {
-			background: #d32f2f;
-			color: #ffffffff;
-			font-weight: bold;
-			border-radius: 8px;
-			box-shadow: 2px 2px 6px #bdbdbd;
-			border: none;
-			padding: 0.7rem 2rem;
-			font-size: 1.1rem;
-		}
-		.explore-btn:hover {
-			background: #b71c1c;
-			color: #fff;
-		}
-		.social-btn:last-child { margin-right: 0; }
-		.login-form label { font-weight: 500; }
-		.login-form .form-check-label { font-weight: 400; }
-		.forgot-link { font-weight: 600; color: #222; text-decoration: none; }
-		.forgot-link:hover { color: #d32f2f; }
-		@media (max-width: 900px) {
-			.main-row { flex-direction: column; }
-			.left-col, .right-col { width: 100%; }
-			.right-col { margin-top: 2rem; }
-		}
-	</style>
-	</style>
+	}
+</style>
+
 </head>
 <body>
-    
-	<div style="width:100%; position:relative; padding:24px 0 0 0;">
-		<img src="images/AUSSC_logo.png" alt="AUSSC Logo" style="position:absolute; top:10px; left:62px; height:89px; max-width:100%; z-index:2;">
-		<ul class="d-flex" style="gap:2.5rem; list-style:none; margin:0; padding:0; justify-content:center; align-items:center;">
-			<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500;">Home</a></li>
-			<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500;">About</a></li>
-			<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500;">Executives</a></li>
-			<li><a class="nav-link active" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:700; border-bottom:2px solid #d32f2f;">Sign in</a></li>
-		</ul>
+	<!-- Responsive header row -->
+		<div class="header-row d-flex align-items-center position-relative" style="width:100%; padding:24px 0;">
+	<!-- Logo to top-left -->
+	<div class="logo-container d-flex align-items-center">
+		<img class="header-logo" src="images/AUSSC_logo.png" alt="AUSSC Logo">
+		<span class="logo-text-mobile">AUSSC - VMS</span>
 	</div>
+
+	<!-- Centered nav (desktop only) -->
+	<ul class="d-flex desktop-nav nav-center">
+		<li><a class="nav-link" href="#">Home</a></li>
+		<li><a class="nav-link" href="#">About</a></li>
+		<li><a class="nav-link" href="#">Executives</a></li>
+		<li><a class="nav-link active" href="#">Sign in</a></li>
+	</ul>
+
+	<!-- Mobile burger -->
+	<div class="mobile-nav">
+		<div class="burger" id="burgerMenu" aria-label="Open menu" tabindex="0">
+		<span></span>
+		<span></span>
+		<span></span>
+		</div>
+	</div>
+	</div>
+
+	<!-- Mobile menu panel -->
+	<div class="mobile-menu-panel" id="mobileMenuPanel">
+		<button class="close-btn" id="closeMobileMenu" aria-label="Close menu">&times;</button>
+		<a href="#">Home</a>
+		<a href="#">About</a>
+		<a href="#">Executives</a>
+		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #d32f2f;">Sign in</a>
+	</div>
+	
 	<div class="container-fluid mt-5">
-		<div class="d-flex main-row" style="min-height: 80vh;">
+		<div class="d-flex main-row" style="min-height: 50vh;">
+
+			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
-		<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#d32f2f; font-weight:800;">Online Voting System</span></div>
-			<div class="mb-4" style="color:#222; font-size:1rem;">Think wise and Cast your vote now in AUSSC Online Voting System</div>
+				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#d32f2f; font-weight:800;">Voting Management System</span></div>
+				<div class="mb-4" style="color:#222; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 12px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
@@ -131,20 +409,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>
 			</div>
+
+			<!-- Mobile center content (hidden on desktop) -->
+			<div class="mobile-center-content" style="display:none; width:100%;">
+				<a href="running_candidates.php" class="explore-btn mb-3" style="text-decoration: none;">View Running Candidates</a>
+				<div style="display: flex; align-items: center; gap: 12px; margin-bottom:1.2rem;">
+					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
+					<img src="images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
+					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
+				</div>
+			</div>
+
+			<!-- Login form column -->
 			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw;">
-					<form class="login-form" style="max-width:520px; min-width:400px; background: rgba(255,255,255,0.4); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
-						<div style="position:relative; padding-left:70px; ">
-							<img src="images/AUSSC_logo.png" alt="AUSSC Logo" style="height:200px; position:relative;  ">
-						</div>
+				<form class="login-form" style="max-width:520px; min-width:400px; background: rgba(255,255,255,0.4); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
+					<div style="position:relative; padding-left:70px; ">
+						<img src="images/AUSSC_logo.png" alt="AUSSC Logo" style="height:200px; position:relative;  ">
+					</div>
+
 					<?php if (!empty($error)): ?>
 						<div class="alert alert-danger text-center mb-3"> <?php echo $error; ?> </div>
 					<?php endif; ?>
+
 					<div class="mb-3">
 						<input type="text" class="form-control shadow-input" placeholder="Student ID" name="student_id" required>
 					</div>
+
 					<div class="mb-3">
 						<input type="password" class="form-control shadow-input" placeholder="Password" name="password" required>
 					</div>
+
 					<div class="d-flex justify-content-between align-items-center mb-4">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" id="remember" name="remember">
@@ -153,13 +447,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						<a href="#" class="forgot-link">Forgot Password?</a>
 					</div>
 					<button type="submit" class="btn btn-red w-100 mb-3" name="login">SIGN IN</button>
-					  <!-- Social login removed -->
-					</form>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+	<script>
+		// Burger menu toggle for mobile
+		const burger = document.getElementById('burgerMenu');
+		const mobileMenu = document.getElementById('mobileMenuPanel');
+		const closeBtn = document.getElementById('closeMobileMenu');
+
+		if (burger && mobileMenu && closeBtn) {
+			burger.addEventListener('click', function() {
+				mobileMenu.classList.add('show');
+				document.body.style.overflow = 'hidden';
+			});
+
+			closeBtn.addEventListener('click', function() {
+				mobileMenu.classList.remove('show');
+				document.body.style.overflow = '';
+			});
+
+			// Close menu on link click (for SPA feel)
+			mobileMenu.querySelectorAll('a').forEach(function(link) {
+				link.addEventListener('click', function() {
+					mobileMenu.classList.remove('show');
+					document.body.style.overflow = '';
+				});
+			});
+		}
+	</script>
 </body>
 </html>

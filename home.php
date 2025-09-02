@@ -44,7 +44,193 @@ date_default_timezone_set('Asia/Manila');
 		background-color: #157347 !important;
 		color: white !important;
 	}
-  </style>
+  /* Responsive styling */
+	@media (max-width: 768px) {
+		.navbar-header {
+		display: flex;
+		align-items: center;
+		}
+
+		.navbar-header img {
+		height: 32px;
+		width: auto;
+		margin-right: 8px;
+		}
+
+		.navbar-header .navbar-brand,
+		.navbar-brand b {
+		font-size: 14px !important;
+		white-space: nowrap;
+		}
+
+		.page-header.title {
+		font-size: 20px !important;
+		text-align: center !important;
+		}
+
+		.navbar-custom-menu .user-header img {
+		width: 30px !important;
+		height: 30px !important;
+		}
+
+		.navbar-custom-menu .user-header p {
+		display: none;
+		}
+		.navbar-custom-menu .user-footer {
+		display: none;
+		}
+
+		.navbar-custom-menu .dropdown-toggle::after {
+		display: inline-block;
+		content: "\f0d7";
+		font-family: FontAwesome;
+		font-size: 18px;
+		margin-left: 5px;
+		}
+
+		.mobile-logout {
+		display: block;
+		background-color: #fff;
+		padding: 10px;
+		border-top: 1px solid #ccc;
+		text-align: left;
+		}
+
+		.mobile-logout a {
+		display: block;
+		color: #333;
+		padding: 5px 0;
+		}
+
+		.box-body ul {
+		padding-left: 0;
+		list-style: none;
+		}
+
+		.box-body ul li {
+		display: flex;
+		align-items: center;
+		margin-bottom: 12px;
+		flex-wrap: wrap;
+		}
+
+		.box-body ul li input[type="radio"] {
+		margin-right: 10px;
+		flex-shrink: 0;
+		}
+
+		.box-body ul li img {
+		width: 60px !important;
+		height: 60px !important;
+		border-radius: 8px;
+		margin-right: 6px;
+		flex-shrink: 0;
+		}
+
+		.box-body ul li .cname {
+		font-size: 13px !important;
+		font-weight: 600;
+		max-width: 140px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-right: auto;
+		display: inline-block;
+		vertical-align: middle;
+		}
+
+		.box-body ul li .btn-platform,
+		.box-body ul li .btn-reset {
+		font-size: 0 !important; 
+		padding: 6px 8px;
+		border-radius: 8px;
+		margin-left: 6px;
+		}
+
+		.box-body ul li .btn-platform {
+		background-color: #4682B4 !important;
+		color: white !important;
+		}
+		.box-body ul li .btn-platform i {
+		font-size: 14px;
+		color: white !important;
+		}
+		.box-body ul li .btn-reset i {
+		font-size: 14px;
+		}
+
+		.box-body p .btn-reset {
+		font-size: 0 !important;
+		padding: 6px 8px;
+		margin-left: 6px;
+		}
+		.box-body p .btn-reset i {
+		font-size: 14px;
+		}
+	}
+	.box-body ul li {
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+	}
+
+	.box-body ul li input[type="radio"] {
+	margin-right: 4px;
+	}
+
+	.box-body ul li button {
+	margin-right: 8px;
+	}
+
+	.candidate-info {
+	display: flex;
+	align-items: center;
+	}
+
+	.candidate-info img {
+	width: 60px !important;
+	height: 60px !important;
+	border-radius: 8px;
+	margin-right: 8px;
+	}
+
+	.candidate-info .cname {
+	font-size: 14px !important;
+	font-weight: 600;
+	white-space: nowrap;
+	}
+	.candidate-row {
+	display: flex;
+	align-items: center;
+	}
+
+	.candidate-row input[type="radio"] {
+	margin-right: 6px;
+	}
+
+	.candidate-row button {
+	position: relative;
+	left: 7px;
+	}
+
+	.candidate-info {
+	display: flex;
+	align-items: center;
+	}
+
+	.candidate-info img {
+	width: 60px !important;
+	height: 60px !important;
+	border-radius: 8px;
+	margin-right: 8px;
+	}
+
+	.candidate-info .cname {
+	font-size: 14px !important;
+	font-weight: 600;
+	white-space: nowrap;
+	}
+</style>
 </head>
 
 <body class="hold-transition skin-blue layout-top-nav">
@@ -217,33 +403,29 @@ date_default_timezone_set('Asia/Manila');
 											$row['description']).'" value="'.$crow['id'].'" '.$checked.'>';
 											
 											$image = (!empty($crow['photo'])) ? 'images/'.$crow['photo'] : 'images/profile.jpg';
+
 											$candidate .= '
+											<li>
+												<div class="candidate-row">
+												'.$input.'
 
-												<li>
-													'.$input.'<button type="button" class="btn btn-primary btn-sm btn-curve clist platform btn-platform" 
-													
+												<button type="button" class="btn btn-primary btn-sm btn-curve clist platform btn-platform" 
 													style="background-color: #4682B4;
-													color:black; 
+													color:white; 
 													font-size: 13px; 
-													font-family:Poppins, Arial, sans-serif;" 
-													data-platform="'
-													.$crow['platform'].'" data-fullname="'
-													.$crow['firstname'].' '
-													.$crow['lastname'].'">
+													font-family:Poppins, Arial, sans-serif;
+													margin-left: 5px;" 
+													data-platform="'.$crow['platform'].'" 
+													data-fullname="'.$crow['firstname'].' '.$crow['lastname'].'">
+													<i class="fa fa-search"></i>
+												</button>
 
-													<i class="fa fa-search">
-													</i> Platform</button>
-
-													<img src="'.$image.'" 
-													height="100px" 
-													width="100px" 
-													class="clist">
-
-													<span class="cname clist">'
-													.$crow['firstname'].' '
-													.$crow['lastname'].
-													'</span>
-												</li>
+												<div class="candidate-info">
+													<img src="'.$image.'" height="100px" width="100px" class="clist">
+													<span class="cname clist">'.$crow['firstname'].' '.$crow['lastname'].'</span>
+												</div>
+												</div>
+											</li>
 											';
 										}
 

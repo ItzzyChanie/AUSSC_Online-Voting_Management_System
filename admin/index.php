@@ -11,7 +11,7 @@ if (isset($_SESSION['admin'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin Login | Online Voting System</title>
+	<title>Admin Login | Voting Management System</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -58,6 +58,10 @@ if (isset($_SESSION['admin'])) {
 			border-radius: 8px;
 			border: none;
 			background: #fbeaea;
+		}
+		.container-fluid {
+			position: relative;
+			left: 60px;
 		}
 		.login-title {
 			font-size: 3rem;
@@ -110,7 +114,7 @@ if (isset($_SESSION['admin'])) {
 	<div class="container-fluid mt-5">
 		<div class="d-flex main-row" style="min-height: 80vh; justify-content:center; align-items:center;">
 			<div class="left-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
-				<div class="login-title">Welcome to AUSSC<br>Online Voting System<br>Admin</div>
+				<div class="login-title">Welcome to AUSSC<br>Voting Management System<br>Admin</div>
 				<div class="login-sub">Sign in to start your admin session</div>
 				<div class="logo-row">
 					<img src="../images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">

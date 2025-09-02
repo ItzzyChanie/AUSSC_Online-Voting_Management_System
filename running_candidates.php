@@ -20,9 +20,7 @@ $candidates_result = mysqli_query($conn, $candidates_query);
 // Group candidates by position
 $candidates_by_position = [];
 if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
-
-    while 
-    ($row = mysqli_fetch_assoc($candidates_result)) {
+    while ($row = mysqli_fetch_assoc($candidates_result)) {
         $candidates_by_position[$row['position']][] = $row;
     }
 }
@@ -36,164 +34,268 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
-            background: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #d32f2f;
-            color: #fff;
-            padding: 1px 0 16px 0; /* reduced top padding from 32px to 12px */
-            text-align: center;
-            box-shadow: 0 2px 8px #bdbdbd;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.1rem;
-            font-weight: 700;
-        }
-        header h2 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 0;
-        }
-        main {
-            max-width: 900px;
-            margin: 32px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px #bdbdbd;
-            padding: 32px;
-        }
-        h3 {
-            color: #d32f2f;
-            font-size: 1.6rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-            margin-top: 0; /* stick to top edge */
-        }
-        .position-section {
-            margin-bottom: 48px;
-        }
-        .position-title {
-            color: #d32f2f;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            text-align: left;
-        }
+    body {
+        font-family: 'Montserrat', Arial, sans-serif;
+        background: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background: #d32f2f;
+        color: #fff;
+        padding: 10px 20px;
+        box-shadow: 0 2px 8px #bdbdbd;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.1rem;
+        font-weight: 700;
+    }
+    header h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+    .login-button {
+        background:#fff;
+        color:#d32f2f;
+        font-weight:bold;
+        border-radius:8px;
+        box-shadow:2px 2px 6px #bdbdbd;
+        border:none;
+        padding:0.5rem 1.5rem;
+        font-size:1rem;
+        text-decoration:none;
+    }
+
+    main {
+        max-width: 900px;
+        margin: 32px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px #bdbdbd;
+        padding: 32px;
+    }
+    h3 {
+        color: #d32f2f;
+        font-size: 1.6rem;
+        margin-bottom: 24px;
+        font-weight: 700;
+        margin-top: 0;
+    }
+    .position-section {
+        margin-bottom: 48px;
+    }
+    .position-title {
+        color: #d32f2f;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: left;
+    }
+    .candidates-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: flex-start;
+    }
+    .candidate-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px #bdbdbd;
+        width: 260px;
+        padding: 24px 16px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+        position: relative;
+    }
+    .candidate-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+        object-fit: cover;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px #d32f2f44;
+    }
+    .candidate-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    .candidate-platform {
+        font-size: 1rem;
+        color: #444;
+        background: #fbeaea;
+        border-radius: 8px;
+        padding: 10px;
+        max-height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 8px;
+        width: 100%;
+        text-align: left;
+        transition: max-height 0.3s;
+    }
+    .candidate-platform.expanded {
+        max-height: 500px;
+        overflow: auto;
+    }
+    .see-more-btn {
+        background: none;
+        border: none;
+        color: #d32f2f;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.95rem;
+        margin-top: -4px;
+        margin-bottom: 4px;
+        text-align: left;
+    }
+
+    @media (max-width: 900px) {
         .candidates-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            justify-content: flex-start;
+            gap: 16px;
+            justify-content: center;
         }
         .candidate-card {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px #bdbdbd;
-            width: 260px;
-            padding: 24px 16px 16px 16px;
+            width: 45%;
+            max-width: 300px;
+        }
+        .position-title {
+            font-size: 1.6rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin-bottom: 16px;
-            position: relative;
+            align-items: flex-start;
         }
-        .candidate-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 8px #d32f2f44;
+        header h1,
+        header h2 {
+            text-align: left;
+            margin: 0;
+            font-size: 0.9rem;   /* smaller text */
+            line-height: 1.2;
         }
-        .candidate-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #222;
-            margin-bottom: 8px;
+        .login-button {
+            margin-left: auto;
+            font-size: 0.7rem;   /* smaller text */
+            padding: 4px 8px;    /* smaller button */
+        }
+
+        main {
+            padding: 12px;
+            margin: 16px;
+        }
+        .position-title {
+            font-size: 1.3rem;
             text-align: center;
         }
-        .candidate-platform {
-            font-size: 1rem;
-            color: #444;
-            background: #fbeaea;
-            border-radius: 8px;
-            padding: 10px;
-            max-height: 60px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 8px;
+        .candidate-card {
             width: 100%;
-            text-align: left;
-            transition: max-height 0.3s;
+            padding: 12px 8px;
+            max-width: 100%;
         }
-        .candidate-platform.expanded {
-            max-height: 500px; /* large enough to show all text */
-            overflow: auto;
+        .candidate-photo {
+            width: 70px;
+            height: 70px;
+        }
+        .candidate-name {
+            font-size: 1rem;
+        }
+        .candidate-platform {
+            font-size: 0.85rem;
+            padding: 6px;
+            max-height: 50px;
         }
         .see-more-btn {
-            background: none;
-            border: none;
-            color: #d32f2f;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.95rem;
-            margin-top: -4px;
-            margin-bottom: 4px;
-            text-align: left;
+            font-size: 0.8rem;
         }
-        @media (max-width: 900px) {
-            .candidates-container {
-                gap: 16px;
-            }
-            .candidate-card {
-                width: 100%;
-                max-width: 340px;
-            }
+        .position-section {
+            margin-bottom: 24px;
         }
-        @media (max-width: 600px) {
-            main {
-                padding: 8px;
-            }
-            .candidate-card {
-                padding: 12px 8px 8px 8px;
-            }
-            .candidate-photo {
-                width: 80px;
-                height: 80px;
-            }
-        }
+    }
     </style>
-</head>
-
-<body>
-    <header>
-        <div style="position:relative;">
-            <h1 style="text-align:center; margin:10px;">Candidates running</h1>
+    </head>
+        <body>
+            <header>
+        <div class="title-container">
+            <h1>Candidates running</h1>
             <h2><?php echo $year; ?> Candidates</h2>
-
-            <a href="login.php"
-                style="position:absolute; 
-                top:16px; 
-                right:32px; 
-                background:#fff; 
-                color:#d32f2f; 
-                font-weight:bold; 
-                border-radius:8px; 
-                box-shadow:2px 2px 6px #bdbdbd; 
-                border:none; 
-                padding:0.5rem 1.5rem; 
-                font-size:1rem; 
-                text-decoration:none;">
-                Login
-            </a>
-
         </div>
+        <a href="login.php" class="login-button">Login</a>
     </header>
+
+    <style>
+    header {
+        background: #d32f2f;
+        color: #fff;
+        padding: 10px 20px;
+        box-shadow: 0 2px 8px #bdbdbd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative; 
+    }
+    .title-container {
+        text-align: center;  
+    }
+    header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.3rem;
+        font-weight: 700;
+    }
+    header h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    .login-button {
+        position: absolute;
+        right: 20px;
+        background: #fff;
+        color: #d32f2f;
+        font-weight: bold;
+        border-radius: 8px;
+        box-shadow: 2px 2px 6px #bdbdbd;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        text-decoration: none;
+    }
+    @media (max-width: 600px) {
+        header {
+            justify-content: space-between;
+        }
+        .title-container {
+            text-align: left; 
+        }
+        header h1,
+        header h2 {
+            font-size: 0.9rem;
+            line-height: 1.2;
+            margin: 0;
+        }
+        .login-button {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            position: static;
+            margin-left: auto;
+        }
+    }
+</style>
 
     <main>
         <?php

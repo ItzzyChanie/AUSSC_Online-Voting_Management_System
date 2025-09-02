@@ -66,9 +66,7 @@
 						position_id) 
 						VALUES ('".$voter['id']."', '$candidate', '$pos_id')";
 					}
-
 				}
-				
 			}
 
 			if (!$error) {
