@@ -116,8 +116,9 @@ if (isset($_SESSION['admin'])) {
 			<div class="left-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
 				<div class="login-title">Welcome to AUSSC<br>Voting Management System<br>Admin</div>
 				<div class="login-sub">Sign in to start your admin session</div>
-				<div class="logo-row">
+				<div class="logo-row" style="margin-top: -30px; gap: 5px;">
 					<img src="../images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
+					<img src="../images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="../images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="../images/osa.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>

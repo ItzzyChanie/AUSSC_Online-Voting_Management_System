@@ -55,6 +55,7 @@ CREATE TABLE `candidates` (
   `position_id` int(11) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
+  `partylist` varchar(30) NOT NULL,
   `photo` varchar(150) NOT NULL,
   `platform` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

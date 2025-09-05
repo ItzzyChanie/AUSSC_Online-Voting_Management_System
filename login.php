@@ -403,8 +403,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#d32f2f; font-weight:800;">Voting Management System</span></div>
 				<div class="mb-4" style="color:#222; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
-				<div style="display: flex; align-items: center; gap: 12px;">
+				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 50px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
+					<img src="images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>
@@ -413,8 +414,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<!-- Mobile center content (hidden on desktop) -->
 			<div class="mobile-center-content" style="display:none; width:100%;">
 				<a href="running_candidates.php" class="explore-btn mb-3" style="text-decoration: none;">View Running Candidates</a>
-				<div style="display: flex; align-items: center; gap: 12px; margin-bottom:1.2rem;">
+				<div style="display: flex; align-items: center; gap: 1px; margin-bottom: -30px; margin-top: -30px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
+					<img src="images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>

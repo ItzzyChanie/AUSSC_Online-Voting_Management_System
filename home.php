@@ -422,7 +422,12 @@ date_default_timezone_set('Asia/Manila');
 
 												<div class="candidate-info">
 													<img src="'.$image.'" height="100px" width="100px" class="clist">
-													<span class="cname clist">'.$crow['firstname'].' '.$crow['lastname'].'</span>
+													<div style="display: flex; flex-direction: column;">
+														<span class="partylist clist" style="font-size:12px; color:#4682B4; font-weight:600;">
+															[ '.$crow['partylist'].' Party List ]
+														</span>
+														<span class="cname clist">'.$crow['firstname'].' '.$crow['lastname'].'</span>
+													</div>
 												</div>
 												</div>
 											</li>

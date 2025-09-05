@@ -6,13 +6,10 @@
   <?php include 'includes/navbar.php'; ?>
   <?php include 'includes/menubar.php'; ?>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="background-color:#fff; margin-top: 20px;">
     
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1><b>
-          <!-- Move heading to the left of breadcrumb -->
           <div style="display: flex; align-items: center; margin-top: 23px;">
 
             <span 
@@ -42,7 +39,6 @@
      </b> </h1>
     </section>
 
-    <!-- Move breadcrumb slightly lower, but still at the top of content-wrapper -->
     <!-- Main content -->
     <section class="content">
       <?php
@@ -91,14 +87,14 @@
                   <th>Photo</th>
                   <th>Firstname</th>
                   <th>Lastname</th>
+                  <th>Party List</th>
                   <th>Platform</th>
                   <th>Tools</th>
                 </thead>
 
                 <tbody>
                   <?php
-                    $sql = "SELECT *, candidates.id 
-                            AS canid 
+                    $sql = "SELECT candidates.*, candidates.id AS canid, positions.description, positions.priority 
                             FROM candidates 
                             LEFT JOIN positions 
                             ON positions.id=candidates.position_id 
@@ -119,6 +115,7 @@
                           </td>
                           <td>".$row['firstname']."</td>
                           <td>".$row['lastname']."</td>
+                          <td>".(isset($row['partylist']) ? $row['partylist'] : '')."</td>
                           <td><a href='#platform' data-toggle='modal' class='btn btn-info btn-sm btn-curve platform enhanced-view-btn' 
                               style='background: #0d6efd; 
                               color: #fff; 
@@ -230,6 +227,7 @@ function getRow(id) {
       $('#edit_lastname').val(response.lastname);
       $('#posselect').val(response.position_id).html(response.description);      
       $('#edit_platform').val(response.platform);
+      $('#edit_partylist').val(response.partylist);
       $('.fullname').html(response.firstname+' '+response.lastname);
       $('#desc').html(response.platform);
     }
@@ -237,4 +235,5 @@ function getRow(id) {
 }
 </script>
 </body>
+</html>
 </html>

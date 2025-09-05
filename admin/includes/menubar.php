@@ -25,6 +25,7 @@
       <li class="header" style="background-color: #28272D ;color:white ; font-size: 12px; font-family:Times ">MANAGE</li>
       <li class=""><a href="voters.php"><i class="fa fa-users"></i> <span>Voters</span></a></li>
       <li class=""><a href="positions.php"><i class="fa fa-tasks"></i> <span>Positions</span></a></li>
+      <li class=""><a href="partylist.php"><i class="fa fa-users"></i> <span>Party List</span></a></li>
       <li class=""><a href="candidates.php"><i class="fa fa-black-tie"></i> <span>Candidates</span></a></li>
       <li class="header" style="background-color:#28272D ;color:white ; font-size: 12px; font-family:Times">SETTINGS</li>
       <li class=""><a href="ballot.php"><i class="fa fa-file-text"></i> <span>Ballot Position</span></a></li>

@@ -1,5 +1,5 @@
 <!-- Add -->
-<div class="modal fade" id="addnew" >
+<div class="modal fade" id="add" >
     <div class="modal-dialog" >
 
         <div class="modal-content" 
@@ -26,7 +26,7 @@
                   font-family: 'Poppins', sans-serif; 
                   flex: 1; 
                   text-align: left;">
-                  Add New Position
+                  Add New Partylist
               </h4>
 
               <button 
@@ -41,7 +41,7 @@
             </div>
 
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="positions_add.php">
+              <form class="form-horizontal" method="POST" action="partylist_add.php">
 
                 <div class="form-group">
                     <label for="description" class="col-sm-3 control-label">Description</label>
@@ -119,7 +119,7 @@
                   font-family: 'Poppins', sans-serif; 
                   flex:1; 
                   text-align:left;">
-                  Edit Position
+                  Edit Partylist
               </h4>
 
               <button 
@@ -134,7 +134,7 @@
             </div>
 
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="positions_edit.php">
+              <form class="form-horizontal" method="POST" action="partylist_edit.php">
                 <input type="hidden" class="id" name="id">
 
                 <div class="form-group">
@@ -214,7 +214,7 @@
                   font-family: 'Poppins', sans-serif; 
                   flex: 1; 
                   text-align: left;">
-                  Delete Position
+                  Delete Partylist
               </h4>
 
               <button 
@@ -229,11 +229,11 @@
             </div>
 
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="positions_delete.php">
+              <form class="form-horizontal" method="POST" action="partylist_delete.php">
                 <input type="hidden" class="id" name="id">
 
                 <div class="text-center">
-                    <p>DELETE POSITION</p>
+                    <p>DELETE PARTYLIST</p>
                     <h2 class="bold description"></h2>
                 </div>
             </div>
@@ -272,4 +272,3 @@
 
 
 
-     

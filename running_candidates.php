@@ -10,7 +10,7 @@ $positions_query = "SELECT id, description FROM positions ORDER BY priority ASC"
 $positions_result = mysqli_query($conn, $positions_query);
 
 // Fetch all candidates grouped by position
-$candidates_query = "SELECT c.firstname, c.lastname, c.platform, c.photo, c.position_id, p.description AS position
+$candidates_query = "SELECT c.firstname, c.lastname, c.platform, c.photo, c.position_id, c.partylist, p.description AS position
     FROM candidates c
     JOIN positions p ON c.position_id = p.id
     ORDER BY p.priority ASC, c.lastname ASC";
@@ -325,9 +325,12 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
                             $platform = htmlspecialchars($cand['platform']);
                             $is_long = mb_strlen($platform) > 120;
                             $platform_short = $is_long ? mb_substr($platform, 0, 120) . '...' : $platform;
+                            $partylist = !empty($cand['partylist']) ? $cand['partylist'] : '';
 
                             echo "<div class='candidate-card'>
                                     <img src='images/{$photo}' alt='{$fullname}' class='candidate-photo'>
+                                    <div class='partylist' style='font-size:13px; color:#4682B4; font-weight:600; margin-bottom:2px;'>
+                                    [ ".htmlspecialchars($partylist)." Party List ]</div>
                                     <div class='candidate-name'>{$fullname}</div>";
 
                             if ($is_long) {

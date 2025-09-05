@@ -141,6 +141,26 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="partylist" class="col-sm-3 control-label">Party List</label>
+
+                    <div class="col-sm-9">
+                      <select class="form-control" id="partylist" name="partylist">
+                        <option value="" selected>- Select -</option>
+                        <?php
+                          $sql = "SELECT * FROM partylist";
+                          $query = $conn->query($sql);
+
+                          while ($row = $query->fetch_assoc()) {
+                            echo "
+                              <option value='".$row['description']."'>".$row['description']."</option>
+                            ";
+                          }
+                        ?>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="photo" class="col-sm-3 control-label">Photo</label>
 
                     <div class="col-sm-9">
@@ -266,6 +286,27 @@
                           ($row = $query->fetch_assoc()) {
                             echo "
                               <option value='".$row['id']."'>".$row['description']."</option>
+                            ";
+                          }
+                        ?>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit_partylist" class="col-sm-3 control-label">Party List</label>
+
+                    <div class="col-sm-9">
+                      <select class="form-control" id="edit_partylist" name="partylist">
+                        <option value="" selected id="posselect"></option>
+
+                        <?php
+                          $sql = "SELECT * FROM partylist";
+                          $query = $conn->query($sql);
+
+                          while ($row = $query->fetch_assoc()) {
+                            echo "
+                              <option value='".$row['description']."'>".$row['description']."</option>
                             ";
                           }
                         ?>
@@ -492,4 +533,3 @@
 
 
 
-     
