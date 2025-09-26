@@ -3,7 +3,7 @@
     <div class="modal-dialog">
 
         <div class="modal-content" 
-        style="background-color: #d8d1bd ;
+        style="background-color: #bdc1d8ff ;
               color:black; 
               font-size: 15px; 
               font-family:Times ">
@@ -26,7 +26,7 @@
               <button 
               type="button" 
               class="btn btn-default btn-curve pull-left"
-              style='background-color:  #FFDEAD;
+              style='background-color:  #adb8ffff;
               color:black; 
               font-size: 12px; 
               font-family:Times' 

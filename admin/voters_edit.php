@@ -11,10 +11,13 @@
 		$query = $conn->query($sql);
 		$row = $query->fetch_assoc();
 
+		// If password is unchanged, keep the old hash; else, hash the new password
 		if ($password == $row['password']) {
 			$password = $row['password'];
+		} 
+		else {
+			$password = password_hash($password, PASSWORD_DEFAULT);
 		}
-		// Store password as plain text
 
 		$sql = "UPDATE voters SET firstname = '$firstname', lastname = '$lastname', password = '$password' WHERE id = '$id'";
 		if ($conn->query($sql)) {

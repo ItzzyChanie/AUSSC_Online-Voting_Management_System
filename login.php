@@ -4,18 +4,19 @@ include 'includes/conn.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$student_id = $_POST['student_id'];
-		$password = $_POST['password'];
-		$sql = "SELECT * FROM voters WHERE student_id = '$student_id'";
-		$query = $conn->query($sql);
+	$student_id = $_POST['student_id'];
+	$password = $_POST['password'];
+	$sql = "SELECT * FROM voters WHERE student_id = '$student_id'";
+	$query = $conn->query($sql);
 
-		if ($query->num_rows < 1) {
-			$error = 'Cannot find voter with the Student ID';
-		} 
-		else {
-			$row = $query->fetch_assoc();
+	if ($query->num_rows < 1) {
+		$error = 'Cannot find voter with the Student ID';
+	} 
+	else {
+		$row = $query->fetch_assoc();
 
-		if ($password == $row['password']) {
+		// Use password_verify for hashed password
+		if (password_verify($password, $row['password'])) {
 			$_SESSION['voter'] = $row['id'];
 			header('Location: home.php');
 			exit();
@@ -40,72 +41,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		position: relative;
 		min-height: 100vh;
 		font-family: 'Montserrat', Arial, sans-serif;
-		background: url('images/Background.png') no-repeat center center fixed;
+		background: url('images/white-blue.jpg') no-repeat center center fixed;
 		background-size: cover;
+	}
+	body::before {
+		content: "";
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		background: inherit;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -1;
+		pointer-events: none;
 	}
 	.main-logo {
 		width: 40px;
 		height: 40px;
-		background: #d32f2f;
+		background: #1b22edff;
 		border-radius: 8px;
 		display: inline-block;
 		margin-right: 10px;
 	}
-	.nav-link.active {
+	.nav-link,
+	.desktop-nav.nav-center li a {
+		color: #1b22edff !important;
+	}
+	.nav-link.active,
+	.desktop-nav.nav-center li a.active {
 		font-weight: bold;
-		border-bottom: 2px solid #d32f2f;
+		border-bottom: 2px solid #1b22edff;
+		color: #1b22edff !important;
 	}
 	.btn-red {
-		background: #d32f2f;
+		background: #1b22edff;
 		color: #fff;
 		font-weight: bold;
 		font-size: 1.2rem;
 		border-radius: 8px;
-		box-shadow: 2px 2px 6px #bdbdbd;
+		box-shadow: 2px 2px 6px #201f1fff;
 		border: none;
 	}
 	.btn-red:hover {
-		background: #b71c1c;
+		background: #041e79ff;
 		color: #fff;
 	}
 
 	.shadow-input {
-		box-shadow: 2px 2px 6px #bdbdbd;
+		box-shadow: 2px 2px 6px #201f1fff;
 		border-radius: 8px;
 		border: none;
-		background: #fbeaea;
+		background: #fff;
 	}
 	.welcome-title {
 		font-size: 2.8rem;
 		font-weight: 700;
-		color: #d32f2f;
+		color: #1b22edff;
 		margin-bottom: 0.5rem;
 	}
 	.welcome-sub {
 		font-size: 2.8rem;
 		font-weight: 700;
-		color: #d32f2f;
+		color: #ffffffff;
 		margin-bottom: 1.5rem;
 	}
 	.explore-btn {
-		background: #d32f2f;
-		color: #ffffffff;
+		background: #1b22edff;
+		color: #ffff;
 		font-weight: bold;
 		border-radius: 8px;
-		box-shadow: 2px 2px 6px #bdbdbd;
+		box-shadow: 2px 2px 6px #545353ff;
 		border: none;
 		padding: 0.7rem 2rem;
 		font-size: 1.1rem;
 	}
 	.explore-btn:hover {
-		background: #b71c1c;
+		background: #0a2873ff;
 		color: #fff;
 	}
 	.social-btn:last-child { margin-right: 0; }
 	.login-form label { font-weight: 500; }
 	.login-form .form-check-label { font-weight: 400; }
 	.forgot-link { font-weight: 600; color: #222; text-decoration: none; }
-	.forgot-link:hover { color: #d32f2f; }
+	.forgot-link:hover { color: #2f42d3ff; }
 
 	@media (max-width: 900px) {
 		.main-row { flex-direction: column; }
@@ -188,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		display: block;
 		width: 26px;
 		height: 4px;
-		background: #d32f2f;
+		background: #2f42d3ff;
 		margin: 4px 0;
 		border-radius: 2px;
 		transition: all 0.3s;
@@ -200,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		right: 0;
 		width: 220px;
 		height: 100vh;
-		background: #fff;
+		background: #0c12a7ff;
 		box-shadow: -2px 0 10px rgba(0,0,0,0.08);
 		display: none;
 		flex-direction: column;
@@ -217,29 +235,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	.mobile-menu-panel a {
 		font-size: 1.1rem;
-		color: #d32f2f;
+		color: #ffffffff !important; /* blue for mobile */
 		font-weight: 600;
 		margin-bottom: 1.2rem;
 		text-decoration: none;
+	}
+	@media (min-width: 601px) {
+		.mobile-menu-panel a {
+			color: #fff !important; /* white for desktop */
+		}
 	}
 	.mobile-menu-panel .close-btn {
 		position: absolute;
 		top: 1.1rem;
 		right: 1.1rem;
 		font-size: 2rem;
-		color: #d32f2f;
+		color: #2f42d3ff;
 		background: none;
 		border: none;
 		cursor: pointer;
 	}
 
 	.header-logo {
-		height: 55px;
+		height: 100px; 
 		max-width: 100%;
-		z-index: 2;
+		
 		position: relative;
-		left: 40px;
-		bottom: 20px;
+		left: 47px;
+		bottom: 40px;
 	}
 
 	@media (min-width: 768px) {
@@ -260,7 +283,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	.header-logo {
-		height: 90px;
+		height: 150px;
+		margin-bottom: 0;
 	}
 
 	.desktop-nav.nav-center {
@@ -278,12 +302,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		padding: 0 1rem;
 		font-weight: 500;
 		text-decoration: none;
-		color: #000;
+		color: #2f42d3ff;
 	}
 
 	.desktop-nav.nav-center li a.active {
 		font-weight: 700;
-		border-bottom: 2px solid #d32f2f;
+		border-bottom: 2px solid #08157aff;
 	}
 	}
 
@@ -309,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	.nav-center li a.active {
 		font-weight: 700;
-		border-bottom: 2px solid #d32f2f;
+		border-bottom: 2px solid #2f42d3ff;
 	}
 
 	@media (max-width: 767px) {
@@ -328,7 +352,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 
 		.header-logo {
-			height: 70px;
+			height: 100px;
 			left: 0;
 			bottom: 0;
 			top: 2px;
@@ -353,7 +377,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			margin-left: -8px;
 			font-size: 1rem;
 			font-weight: 600;
-			color: #d32f2f;
+			color: #fff; 
+		}
+		.burger span {
+			background: #06046cd8;
 		}
 	}
 </style>
@@ -364,13 +391,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<div class="header-row d-flex align-items-center position-relative" style="width:100%; padding:24px 0;">
 	<!-- Logo to top-left -->
 	<div class="logo-container d-flex align-items-center">
-		<img class="header-logo" src="images/AUSSC_logo.png" alt="AUSSC Logo">
+		<img class="header-logo" src="images/au_comelec.png" alt="AUSSC Logo">
 		<span class="logo-text-mobile">AUSSC - VMS</span>
 	</div>
 
 	<!-- Centered nav (desktop only) -->
 	<ul class="d-flex desktop-nav nav-center">
-		<li><a class="nav-link" href="#">Home</a></li>
+		<li><a class="nav-link" href="#">Result</a></li>
 		<li><a class="nav-link" href="#">About</a></li>
 		<li><a class="nav-link" href="#">Executives</a></li>
 		<li><a class="nav-link active" href="#">Sign in</a></li>
@@ -389,23 +416,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<!-- Mobile menu panel -->
 	<div class="mobile-menu-panel" id="mobileMenuPanel">
 		<button class="close-btn" id="closeMobileMenu" aria-label="Close menu">&times;</button>
-		<a href="#">Home</a>
+		<a href="#">Result</a>
 		<a href="#">About</a>
 		<a href="#">Executives</a>
-		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #d32f2f;">Sign in</a>
+		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #e2e23eff;">Sign in</a>
 	</div>
 	
 	<div class="container-fluid mt-5">
-		<div class="d-flex main-row" style="min-height: 50vh;">
+		<div class="d-flex main-row" style="position: relative; bottom: 70px;">
 
 			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
-				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#d32f2f; font-weight:800;">Voting Management System</span></div>
-				<div class="mb-4" style="color:#222; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
+				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#1b22edff; font-weight:800;">Voting Management System</span></div>
+				<div class="mb-4" style="color:#000; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
-				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 50px;">
+				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 30px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
-					<img src="images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>
@@ -414,9 +440,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<!-- Mobile center content (hidden on desktop) -->
 			<div class="mobile-center-content" style="display:none; width:100%;">
 				<a href="running_candidates.php" class="explore-btn mb-3" style="text-decoration: none;">View Running Candidates</a>
-				<div style="display: flex; align-items: center; gap: 1px; margin-bottom: -30px; margin-top: -30px;">
+				<div style="display: flex; align-items: center; gap: 1px; margin-bottom: 1px; margin-top: 1px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
-					<img src="images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="images/OSA.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>
@@ -424,7 +449,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			<!-- Login form column -->
 			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw;">
-				<form class="login-form" style="max-width:520px; min-width:400px; background: rgba(255,255,255,0.4); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
+				<form class="login-form" style="max-width:520px; min-width:400px; border: 2px solid blue; background: rgba(252, 253, 254, 0.44); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
 					<div style="position:relative; padding-left:70px; ">
 						<img src="images/AUSSC_logo.png" alt="AUSSC Logo" style="height:200px; position:relative;  ">
 					</div>

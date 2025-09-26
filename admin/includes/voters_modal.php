@@ -11,7 +11,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -62,6 +62,33 @@
                       <label for="student_id" class="col-sm-3 control-label">Student ID</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="student_id" name="student_id" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="student_level" class="col-sm-3 control-label">Level</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="student_level" name="student_level" required>
+                      </div>
+                  </div>
+
+                  <!-- Course Dropdown -->
+                  <div class="form-group">
+                      <label for="course" class="col-sm-3 control-label">Course</label>
+                      <div class="col-sm-9">
+                        <select class="form-control" id="course" name="course" required>
+                          <option value="">Select Course</option>
+                          <option value="BS Computer Science">BS Computer Science</option>
+                          <option value="BS Information Technology">BS Information Technology</option>
+                          <option value="BS Criminology">BS Criminology</option>
+                          <option value="BS Psychology">BS Psychology</option>
+                          <option value="BS Hospitality Management">BS Hospitality Management</option>
+                          <option value="BS Business Administration">BS Business Administration</option>
+                          <option value="BS Accountancy">BS Accountancy</option>
+                          <option value="BS Education">BS Education</option>
+                          <option value="BS Tourism Management">BS Tourism Management</option>
+                          <!-- Add more courses as needed -->
+                        </select>
                       </div>
                   </div>
 
@@ -128,7 +155,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -232,7 +259,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -316,7 +343,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -391,4 +418,3 @@
 </div>
 
 
-     

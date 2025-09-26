@@ -85,6 +85,8 @@
                 <thead style="font-family: 'Poppins', sans-serif;">
                   <th>Lastname</th>
                   <th>Firstname</th>
+                  <th>Level</th>
+                  <th>Course</th>
                   <th>Photo</th>
                   <th>Student ID</th>
 
@@ -114,11 +116,12 @@
                         <tr style='color:black ; font-size: 15px; font-family: Poppins, sans-serif;'>
                           <td style='font-family: Poppins, sans-serif;'>".$row['lastname']."</td>
                           <td style='font-family: Poppins, sans-serif;'>".$row['firstname']."</td>
+                          <td style='font-family: Poppins, sans-serif;'>".(isset($row['student_level']) ? $row['student_level'] : '')."</td>
+                          <td style='font-family: Poppins, sans-serif;'>".(isset($row['course']) ? $row['course'] : '')."</td>
                           <td style='font-family: Poppins, sans-serif;'>
                             <img src='".$image."' width='30px' height='30px'>
                             <a href='#edit_photo' data-toggle='modal' class='pull-right photo' data-id='".$row['id']."'><span class='fa fa-edit'></span></a>
                           </td>
-
                           <td style='font-family: Poppins, sans-serif;'>".$row['student_id']."</td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-curve enhanced-edit-btn' 

@@ -41,7 +41,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         padding: 0;
     }
     header {
-        background: #d32f2f;
+        background: #2f42d3ff;
         color: #fff;
         padding: 10px 20px;
         box-shadow: 0 2px 8px #bdbdbd;
@@ -78,7 +78,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         padding: 32px;
     }
     h3 {
-        color: #d32f2f;
+        color: #2f42d3ff;
         font-size: 1.6rem;
         margin-bottom: 24px;
         font-weight: 700;
@@ -88,7 +88,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         margin-bottom: 48px;
     }
     .position-title {
-        color: #d32f2f;
+        color: #2f42d3ff;
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 24px;
@@ -118,7 +118,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         border-radius: 12px;
         object-fit: cover;
         margin-bottom: 12px;
-        box-shadow: 0 2px 8px #d32f2f44;
+        box-shadow: 0 2px 8px #f1101070;
     }
     .candidate-name {
         font-size: 1.2rem;
@@ -130,7 +130,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
     .candidate-platform {
         font-size: 1rem;
         color: #444;
-        background: #fbeaea;
+        background: #eaecfbff;
         border-radius: 8px;
         padding: 10px;
         max-height: 60px;
@@ -148,13 +148,72 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
     .see-more-btn {
         background: none;
         border: none;
-        color: #d32f2f;
+        color: #2f42d3ff;
         font-weight: bold;
         cursor: pointer;
         font-size: 0.95rem;
         margin-top: -4px;
         margin-bottom: 4px;
         text-align: left;
+    }
+
+    /* Candidate Photo Modal Styles */
+    .photo-modal {
+        display: none; 
+        position: fixed; 
+        z-index: 9999; 
+        padding-top: 60px; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.8);
+        text-align: center;
+    }
+    .photo-modal .close-modal {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #fff;
+        font-size: 48px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+        transition: color 0.2s;
+    }
+    .photo-modal .close-modal:hover {
+        color: #3f2fd3ff;
+    }
+    .photo-modal .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90vw;
+        max-height: 80vh;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px #222;
+        background: #fff;
+    }
+    .photo-modal .modal-caption {
+        margin: 16px auto 0 auto;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-shadow: 0 2px 8px #222;
+    }
+    @media (max-width: 600px) {
+        .photo-modal .modal-content {
+            max-width: 98vw;
+            max-height: 60vh;
+        }
+        .photo-modal .close-modal {
+            top: 10px;
+            right: 16px;
+            font-size: 32px;
+        }
+        .photo-modal .modal-caption {
+            font-size: 1rem;
+        }
     }
 
     @media (max-width: 900px) {
@@ -240,7 +299,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
 
     <style>
     header {
-        background: #d32f2f;
+        background: #2f42d3ff;
         color: #fff;
         padding: 10px 20px;
         box-shadow: 0 2px 8px #bdbdbd;
@@ -266,7 +325,7 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         position: absolute;
         right: 20px;
         background: #fff;
-        color: #d32f2f;
+        color: #2f42d3ff;
         font-weight: bold;
         border-radius: 8px;
         box-shadow: 2px 2px 6px #bdbdbd;
@@ -328,9 +387,11 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
                             $partylist = !empty($cand['partylist']) ? $cand['partylist'] : '';
 
                             echo "<div class='candidate-card'>
-                                    <img src='images/{$photo}' alt='{$fullname}' class='candidate-photo'>
+                                    <div class='candidate-photo-wrapper'>
+                                        <img src='images/{$photo}' alt='{$fullname}' class='candidate-photo' onclick='showPhotoModal(\"images/{$photo}\", \"{$fullname}\")' style='cursor:pointer;'>
+                                    </div>
                                     <div class='partylist' style='font-size:13px; color:#4682B4; font-weight:600; margin-bottom:2px;'>
-                                    [ ".htmlspecialchars($partylist)." Party List ]</div>
+                                    ".htmlspecialchars($partylist)." Party List</div>
                                     <div class='candidate-name'>{$fullname}</div>";
 
                             if ($is_long) {
@@ -367,19 +428,73 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
         ?>
     </main>
 
-    <div style="text-align:center; margin-bottom:32px;">
-        <a href="login.php" 
-        style="display:inline-block; 
-        background:#d32f2f; 
-        color:#fff; 
-        font-weight:bold; 
-        border-radius:8px; 
-        box-shadow:2px 2px 6px #bdbdbd; 
-        border:none; 
-        padding:0.7rem 2rem; 
-        font-size:1.1rem; 
-        text-decoration:none;">Back</a>
+    <!-- Candidate Photo Modal -->
+    <div id="photoModal" class="photo-modal" style="display:none;">
+        <span class="close-modal" onclick="closePhotoModal()">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="">
+        <div id="modalCaption" class="modal-caption"></div>
     </div>
+
+    <style>
+    /* Candidate Photo Modal Styles */
+    .photo-modal {
+        display: none; 
+        position: fixed; 
+        z-index: 9999; 
+        padding-top: 60px; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.8);
+        text-align: center;
+    }
+    .photo-modal .close-modal {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #fff;
+        font-size: 48px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+        transition: color 0.2s;
+    }
+    .photo-modal .close-modal:hover {
+        color: #2f32d3ff;
+    }
+    .photo-modal .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90vw;
+        max-height: 80vh;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px #222;
+        background: #fff;
+    }
+    .photo-modal .modal-caption {
+        margin: 16px auto 0 auto;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-shadow: 0 2px 8px #222;
+    }
+    @media (max-width: 600px) {
+        .photo-modal .modal-content {
+            max-width: 98vw;
+            max-height: 60vh;
+        }
+        .photo-modal .close-modal {
+            top: 10px;
+            right: 16px;
+            font-size: 32px;
+        }
+        .photo-modal .modal-caption {
+            font-size: 1rem;
+        }
+    }
+    </style>
 
     <script>
         function togglePlatform(btn) {
@@ -395,6 +510,29 @@ if ($candidates_result && mysqli_num_rows($candidates_result) > 0) {
                 fullDiv.style.display = "none";
                 shortDiv.style.display = "block";
                 btn.textContent = "See more";
+            }
+        }
+
+        function showPhotoModal(src, caption) {
+            var modal = document.getElementById('photoModal');
+            var modalImg = document.getElementById('modalImg');
+            var modalCaption = document.getElementById('modalCaption');
+            modal.style.display = "block";
+            modalImg.src = src;
+            modalImg.alt = caption;
+            modalCaption.textContent = caption;
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        }
+        function closePhotoModal() {
+            var modal = document.getElementById('photoModal');
+            modal.style.display = "none";
+            document.body.style.overflow = ''; // Restore scroll
+        }
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            var modal = document.getElementById('photoModal');
+            if (event.target === modal) {
+                closePhotoModal();
             }
         }
     </script>

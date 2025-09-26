@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (isset($_SESSION['admin'])) {
@@ -18,7 +17,7 @@ if (isset($_SESSION['admin'])) {
 	<style>
 		html, body {
 			font-family: 'Montserrat', Arial, sans-serif;
-			background: url('../images/Background.png') no-repeat center center fixed;
+			background: url('../images/white-blue.jpg') no-repeat center center fixed;
 			background-size: cover;
 			min-height: 100vh;
 			overflow: hidden;
@@ -26,7 +25,7 @@ if (isset($_SESSION['admin'])) {
 		.main-logo {
 			width: 40px;
 			height: 40px;
-			background: #d32f2f;
+			background: #3137ebe2;
 			border-radius: 8px;
 			display: inline-block;
 			margin-right: 10px;
@@ -38,10 +37,10 @@ if (isset($_SESSION['admin'])) {
 		}
 		.nav-link.active {
 			font-weight: bold;
-			border-bottom: 2px solid #d32f2f;
+			border-bottom: 2px solid #3137ebe2;
 		}
 		.btn-red {
-			background: #d32f2f;
+			background: #3137ebe2;
 			color: #fff;
 			font-weight: bold;
 			font-size: 1.2rem;
@@ -50,14 +49,14 @@ if (isset($_SESSION['admin'])) {
 			border: none;
 		}
 		.btn-red:hover {
-			background: #b71c1c;
+			background: #1c29b7ff;
 			color: #fff;
 		}
 		.shadow-input {
-			box-shadow: 2px 2px 6px #bdbdbd;
+			box-shadow: 2px 2px 6px #363535ff;
 			border-radius: 8px;
 			border: none;
-			background: #fbeaea;
+			background: #ffffffff;
 		}
 		.container-fluid {
 			position: relative;
@@ -66,7 +65,7 @@ if (isset($_SESSION['admin'])) {
 		.login-title {
 			font-size: 3rem;
 			font-weight: 900;
-			color: #d32f2f;
+			color: #3137ebe2;
 			margin-bottom: 0.5rem;
 			line-height: 1.1;
 			text-align: center;
@@ -99,14 +98,13 @@ if (isset($_SESSION['admin'])) {
 	<!-- Navbar with AUSSC logo at top left and centered menu -->
 	<div class="d-flex align-items-center w-100" style="margin-top: 25px; position:relative;">
 		<div style="position:absolute; left:62px; top:0; height:60px; display:flex; align-items:center;">
-			<img src="../images/AUSSC_logo.png" alt="AUSSC Logo" style="height:88px; width:auto;">
+			<img src="../images/au_comelec.png" alt="AUSSC Logo" style="height:150px; width:auto;">
 		</div>
 		<div class="flex-grow-1 d-flex justify-content-center">
 			<ul class="d-flex" style="gap:2.5rem; list-style:none; margin:0; padding:0;">
-				<li><a class="nav-link" href="../home.php" style="padding-left:1rem; padding-right:1rem; font-weight:500;">Home</a></li>
-				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500;">About</a></li>
-				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500;">Executives</a></li>
-				<li><a class="nav-link active" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:700; border-bottom:2px solid #d32f2f;">Sign in</a></li>
+				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500; color:#3137ebe2;">About</a></li>
+				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500; color:#3137ebe2;">Executives</a></li>
+				<li><a class="nav-link active" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:700; border-bottom:2px solid #3137ebe2; color:#3137ebe2;">Sign in</a></li>
 			</ul>
 		</div>
 	</div>
@@ -116,16 +114,15 @@ if (isset($_SESSION['admin'])) {
 			<div class="left-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
 				<div class="login-title">Welcome to AUSSC<br>Voting Management System<br>Admin</div>
 				<div class="login-sub">Sign in to start your admin session</div>
-				<div class="logo-row" style="margin-top: -30px; gap: 5px;">
+				<div class="logo-row" style="margin-top: -10px; gap: 10px;">
 					<img src="../images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
-					<img src="../images/au_comelec.png" alt="comelec logo" style="height: 140px;">
 					<img src="../images/osa_logo.png" alt="OSA Logo" style="width:55px; max-width:55px;">
 					<img src="../images/osa.png" alt="OSA Logo" style="width:100px; max-width:100px;">
 				</div>
 			</div>
 
 			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
-				<form class="login-form w-100" style="max-width:420px; min-width:320px; background: rgba(255,255,255,0.4); padding: 24px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="login.php">
+				<form class="login-form w-100" style="max-width:420px; min-width:320px; background: rgba(255, 255, 255, 0.4); padding: 24px 32px; border-radius: 16px; min-height: 320px; border:2px solid #3137ebe2;" method="POST" action="login.php">
 					<div style="text-align:center; margin-bottom:1rem;">
 						<img src="../images/AUSSC_logo.png" alt="AUSSC Logo" style="height:210px;">
 					</div>

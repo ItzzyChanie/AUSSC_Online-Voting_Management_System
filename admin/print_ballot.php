@@ -47,7 +47,7 @@ $election_date = date("F d, Y");
             align-items: center;
             position: relative;
             top: 20px;
-            left: 70px;
+            left: 25px;
             margin-right: 12px;
         }
         .school { font-size: 1.1em; font-weight: bold; }
@@ -67,6 +67,12 @@ $election_date = date("F d, Y");
         }
         .header-logos-right img.aussc-logo {
             height: 90px;
+            position: relative;
+            right: 40px;
+        }
+        .header-logos-right img.osa-logo {
+            position: relative;
+            right: 45px;
         }
         table {
             width: 100%;
@@ -77,16 +83,17 @@ $election_date = date("F d, Y");
             overflow: hidden;
         }
         th, td {
-            border: 1px solid #bbb;
+            border: 1px solid #7b7b7bff !important;
             padding: 10px 14px;
             text-align: left;
             font-size: 1.05em;
         }
         th {
             background: #4682B4;
-            color: #fff;
+            color: #000000ff !important;
             font-weight: 700;
             font-size: 1.08em;
+            opacity: 1 !important;
         }
         tr:nth-child(even) td {
             background: #f6f8fa;
@@ -142,6 +149,13 @@ $election_date = date("F d, Y");
             color: #fff;
         }
         @media print {
+            th {
+                color: #000000ff !important;
+                opacity: 1 !important;
+                background: #abd7f1ec !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
             .no-print { display: none; }
             .header-flex { margin-bottom: 0; }
             table { box-shadow: none; }
@@ -154,7 +168,8 @@ $election_date = date("F d, Y");
         <div class="header-center">
             <div class="header-center-content">
                 <span class="header-au-logo">
-                    <img src="../images/au logo.png" alt="AU Logo">
+                    <img src="../images/au logo.png" alt="AU Logo" style="height:55px; position:relative; bottom: 43px; right: 6px;">
+                    <img src="../images/au_comelec.png" alt="AU Comelec" style="height:155px; position:relative; top: 5px; right: 22px;">
                 </span>
 
                 <span class="header-texts">
@@ -167,7 +182,7 @@ $election_date = date("F d, Y");
 
                 <div class="header-logos-right">
                     <img src="../images/AUSSC_logo.png" alt="AUSSC Logo" class="aussc-logo">
-                    <img src="../images/osa_logo.png" alt="OSA Logo">
+                    <img src="../images/osa_logo.png" alt="OSA Logo" class="osa-logo">
                 </div>
             </div>
         </div>
@@ -200,6 +215,7 @@ $election_date = date("F d, Y");
             $vote_count = $vquery->num_rows;
             $candidates[] = [
                 'name' => $crow['firstname'] . ' ' . $crow['lastname'],
+                'partylist' => $crow['partylist'],
                 'votes' => $vote_count
             ];
             $total_votes_cast += $vote_count;
@@ -215,6 +231,7 @@ $election_date = date("F d, Y");
             <thead>
                 <tr>
                     <th>Candidate Name</th>
+                    <th>Party List</th>
                     <th>Votes Received</th>
                 </tr>
             </thead>
@@ -223,11 +240,12 @@ $election_date = date("F d, Y");
                     <?php foreach ($res['candidates'] as $cand): ?>
                         <tr>
                             <td><?php echo $cand['name']; ?></td>
+                            <td><?php echo htmlspecialchars($cand['partylist']); ?></td>
                             <td><?php echo $cand['votes']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr><td colspan="2">No candidates for this position.</td></tr>
+                    <tr><td colspan="3">No candidates for this position.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

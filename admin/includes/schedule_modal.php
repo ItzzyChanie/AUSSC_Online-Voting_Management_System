@@ -22,7 +22,7 @@ include 'includes/session.php';
       <form method="POST" action="save_schedule.php">
 
         <div class="modal-header" 
-            style="background: #d32f2f; 
+            style="background: #3137ebe2; 
             color: #fff; 
             border-top-left-radius: 16px; 
             border-top-right-radius: 16px; 

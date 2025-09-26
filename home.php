@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Manila');
 
   <style>
     .box.box-solid {
-      background: #fffbe9 !important;
+      background: #fff !important;
       border-radius: 16px;
       box-shadow: 0 2px 12px rgba(211,47,47,0.08);
       border: 1px solid #e0d6c3;
@@ -18,8 +18,8 @@ date_default_timezone_set('Asia/Manila');
       padding: 18px 24px;
     }
     .box-header.with-border {
-      background: #fbeaea !important;
-      color: #d32f2f !important;
+      background: #eaeafbff !important;
+      color: #1b22edff !important;
       border-radius: 12px 12px 0 0;
       padding: 12px 24px;
       font-family: 'Poppins', Arial, sans-serif;
@@ -115,7 +115,6 @@ date_default_timezone_set('Asia/Manila');
 		}
 
 		.box-body ul li input[type="radio"] {
-		margin-right: 10px;
 		flex-shrink: 0;
 		}
 
@@ -230,7 +229,66 @@ date_default_timezone_set('Asia/Manila');
 	font-weight: 600;
 	white-space: nowrap;
 	}
-</style>
+
+	/* Candidate Photo Modal Styles */
+	.photo-modal {
+		display: none; 
+		position: fixed; 
+		z-index: 9999; 
+		padding-top: 60px; 
+		left: 0;
+		top: 0;
+		width: 100%; 
+		height: 100%; 
+		overflow: auto; 
+		background-color: rgba(0,0,0,0.8);
+		text-align: center;
+	}
+	.photo-modal .close-modal {
+		position: absolute;
+		top: 30px;
+		right: 40px;
+		color: #fff;
+		font-size: 48px;
+		font-weight: bold;
+		cursor: pointer;
+		z-index: 10001;
+		transition: color 0.2s;
+	}
+	.photo-modal .close-modal:hover {
+		color: #3d2fd3ff;
+	}
+	.photo-modal .modal-content {
+		margin: auto;
+		display: block;
+		max-width: 90vw;
+		max-height: 80vh;
+		border-radius: 16px;
+		box-shadow: 0 2px 16px #222;
+		background: #fff;
+	}
+	.photo-modal .modal-caption {
+		margin: 16px auto 0 auto;
+		color: #fff;
+		font-size: 1.2rem;
+		font-weight: 600;
+		text-shadow: 0 2px 8px #222;
+	}
+	@media (max-width: 600px) {
+		.photo-modal .modal-content {
+			max-width: 98vw;
+			max-height: 60vh;
+		}
+		.photo-modal .close-modal {
+			top: 10px;
+			right: 16px;
+			font-size: 32px;
+		}
+		.photo-modal .modal-caption {
+			font-size: 1rem;
+		}
+	}
+  </style>
 </head>
 
 <body class="hold-transition skin-blue layout-top-nav">
@@ -354,7 +412,7 @@ date_default_timezone_set('Asia/Manila');
 								data-toggle="modal" 
 								data-target="#view" 
 								class="btn btn-curve btn-primary btn-lg" 
-								style="background-color: #d32f2f;
+								style="background-color: #1b22edff;
 								color:white; 
 								font-size: 22px; 
 								font-family:'Montserrat', Arial, sans-serif;">View Ballot</button>
@@ -398,7 +456,6 @@ date_default_timezone_set('Asia/Manila');
 													}
 												}
 											}
-											// Force all candidate selection inputs to be radio buttons
 											$input = '<input type="radio" class="flat-red '.$slug.'" name="'.slugify(
 											$row['description']).'" value="'.$crow['id'].'" '.$checked.'>';
 											
@@ -421,10 +478,12 @@ date_default_timezone_set('Asia/Manila');
 												</button>
 
 												<div class="candidate-info">
-													<img src="'.$image.'" height="100px" width="100px" class="clist">
+													<span class="candidate-photo-wrapper">
+														<img src="'.$image.'" class="clist" style="cursor:pointer;" onclick="showPhotoModal(\''.$image.'\', \''.$crow['firstname'].' '.$crow['lastname'].'\')">
+													</span>
 													<div style="display: flex; flex-direction: column;">
 														<span class="partylist clist" style="font-size:12px; color:#4682B4; font-weight:600;">
-															[ '.$crow['partylist'].' Party List ]
+															'.$crow['partylist'].' Party List
 														</span>
 														<span class="cname clist">'.$crow['firstname'].' '.$crow['lastname'].'</span>
 													</div>
@@ -540,6 +599,40 @@ $(function() {
 		return allFilled;
 	}
 });
+
+function showPhotoModal(src, caption) {
+	var modal = document.getElementById('photoModal');
+	var modalImg = document.getElementById('modalImg');
+	var modalCaption = document.getElementById('modalCaption');
+	modal.style.display = "block";
+	modalImg.src = src;
+	modalImg.alt = caption;
+	modalCaption.textContent = caption;
+	document.body.style.overflow = 'hidden'; // Prevent background scroll
+}
+
+function closePhotoModal() {
+	var modal = document.getElementById('photoModal');
+	modal.style.display = "none";
+	document.body.style.overflow = ''; // Restore scroll
+}
+
+// Close modal when clicking outside the image
+window.onclick = function(event) {
+	var modal = document.getElementById('photoModal');
+	if (event.target === modal) {
+		closePhotoModal();
+	}
+}
 </script>
+</body>
+</html>
+
+<div id="photoModal" class="photo-modal" style="display:none;">
+	<span class="close-modal" onclick="closePhotoModal()">&times;</span>
+	<img class="modal-content" id="modalImg" src="" alt="">
+	<div id="modalCaption" class="modal-caption"></div>
+</div>
+
 </body>
 </html>

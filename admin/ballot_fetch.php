@@ -27,7 +27,7 @@
 		($crow = $cquery->fetch_assoc()) {
 			$image = (!empty($crow['photo'])) ? '../images/'.$crow['photo'] : '../images/profile.jpg';
 			$candidate .= '
-				<li>
+				<li style="display: flex; align-items: center;">
 					'.$input.'<span style="display:inline-block; margin-left:10px;">
 					<button class="btn btn-primary btn-sm platform-btn" data-cid="'
 					.$crow['id'].'" 
@@ -41,9 +41,11 @@
 					font-weight: 500;">
 
 					<i class="fa fa-search"></i> Platform</button></span>
-					<img src="'.$image.'" height="100px" width="100px" 
-					class="clist"><span class="cname clist">'
-					.$crow['firstname'].' '.$crow['lastname'].'</span>
+					<img src="'.$image.'" height="100px" width="100px" class="clist" style="margin-left:10px; margin-right:10px;">
+					<div style="display: flex; flex-direction: column; align-items: flex-start;">
+						<span class="partylist clist" style="font-size:12px; color:#4682B4; font-weight:600;">[ '.htmlspecialchars($crow['partylist']).' Party List ]</span>
+						<span class="cname clist">'.htmlspecialchars($crow['firstname'].' '.$crow['lastname']).'</span>
+					</div>
 				</li>
 			';
 		}

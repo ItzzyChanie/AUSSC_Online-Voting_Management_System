@@ -86,6 +86,8 @@
                   <th>POSITION</th>
                   <th>CANDIDATE</th>
                   <th>VOTER</th>
+                  <th>Level</th>
+                  <th>Course</th>
                 </thead>
                 <tbody>
                   <?php
@@ -93,7 +95,9 @@
                             candidates.firstname AS canfirst, 
                             candidates.lastname AS canlast, 
                             voters.firstname AS votfirst, 
-                            voters.lastname AS votlast 
+                            voters.lastname AS votlast,
+                            voters.student_level AS votlevel,
+                            voters.course AS votcourse
                             FROM votes 
                             LEFT JOIN positions 
                             ON positions.id=votes.position_id 
@@ -105,14 +109,15 @@
 
                     $query = $conn->query($sql);
 
-                    while
-                    ($row = $query->fetch_assoc()) {
+                    while ($row = $query->fetch_assoc()) {
                       echo "
                         <tr style='color:black ; font-size: 15px; font-family: Poppins, sans-serif;'>
                           <td class='hidden'></td>
                           <td>".$row['description']."</td>
                           <td>".$row['canfirst'].' '.$row['canlast']."</td>
                           <td>".$row['votfirst'].' '.$row['votlast']."</td>
+                          <td>".(isset($row['votlevel']) ? $row['votlevel'] : '')."</td>
+                          <td>".(isset($row['votcourse']) ? $row['votcourse'] : '')."</td>
                         </tr>
                       ";
                     }

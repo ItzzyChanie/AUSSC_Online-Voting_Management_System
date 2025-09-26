@@ -48,7 +48,7 @@ if (!isset($voter) || !isset($conn)) {
 </style>
 <style>
   #platform .modal-content {
-    background: linear-gradient(135deg, #fffbe9 0%, #fbeaea 100%);
+    background: linear-gradient(135deg, #eee9ffff 0%, #ebeafbff 100%);
     color: #333;
     border-radius: 18px;
     box-shadow: 0 8px 32px rgba(211,47,47,0.18);
@@ -58,11 +58,11 @@ if (!isset($voter) || !isset($conn)) {
     transition: box-shadow 0.3s;
   }
   #platform .modal-header {
-    background: #d32f2f;
+    background: #3137ebe2;
     color: #fff;
     border-radius: 11px 11px 0 0;
     padding: 18px 28px 12px 28px;
-    border-bottom: 1px solid #e0d6c3;
+    border-bottom: 1px solid #c5c3e0ff;
     text-align: center;
   }
   #platform .modal-title {
@@ -79,10 +79,10 @@ if (!isset($voter) || !isset($conn)) {
     text-align: center;
   }
   #platform .modal-footer {
-    background: #fbeaea;
+    background: #ebeafbff;
     border-radius: 0 0 18px 18px;
     padding: 16px 28px;
-    border-top: 1px solid #e0d6c3;
+    border-top: 1px solid #c3c4e0ff;
     text-align: right;
   }
   #platform .btn-close, #platform .btn-default {
@@ -94,7 +94,7 @@ if (!isset($voter) || !isset($conn)) {
     transition: background 0.2s;
   }
   #platform .btn-default:hover {
-    background: #d32f2f;
+    background: #3137ebe2;
     color: #fff;
   }
 
@@ -156,11 +156,11 @@ if (!isset($voter) || !isset($conn)) {
     width: 60%;
   }
   #view .modal-header {
-    background: #d32f2f;
+    background: #3137ebe2;
     color: #fff;
     border-radius: 14px 14px 0 0;
     padding: 18px 28px 12px 28px;
-    border-bottom: 1px solid #e0d6c3;
+    border-bottom: 1px solid #c3c3e0ff;
     text-align: left;
   }
   #view .modal-title {
@@ -178,10 +178,10 @@ if (!isset($voter) || !isset($conn)) {
     text-align: left;
   }
   #view .modal-footer {
-    background: #fbeaea;
+    background: #ebeafbff;
     border-radius: 0 0 18px 18px;
     padding: 16px 28px;
-    border-top: 1px solid #e0d6c3;
+    border-top: 1px solid #c3c3e0ff;
     text-align: right;
   }
   #view .btn-close, #view .btn-default {
@@ -193,7 +193,7 @@ if (!isset($voter) || !isset($conn)) {
     transition: background 0.2s;
   }
   #view .btn-default:hover {
-    background: #d32f2f;
+    background: #3137ebe2;
     color: #fff;
   }
   .votelist-flex {
@@ -201,7 +201,7 @@ if (!isset($voter) || !isset($conn)) {
     align-items: center;
     justify-content: flex-start;
     padding: 10px 0;
-    border-bottom: 1px solid #e0d6c3;
+    border-bottom: 1px solid #c3c8e0ff;
     font-size: 1rem;
   }
   .votelist-flex:last-child {
@@ -211,7 +211,7 @@ if (!isset($voter) || !isset($conn)) {
     flex: 0 0 auto;
     text-align: left;
     font-weight: 700;
-    color: #d32f2f;
+    color: #1b22edff;
     padding-right: 18px;
     min-width: 160px;
     margin-right: 0;
@@ -288,7 +288,11 @@ if (!isset($voter) || !isset($conn)) {
                   echo "
                     <div class='votelist-flex'>
                       <span class='votelist-label'>".htmlspecialchars($row['description'])." :</span>
-                      <span class='votelist-value'>".htmlspecialchars($row['canfirst'])." ".htmlspecialchars($row['canlast'])."</span>
+                      <span class='votelist-value'>".htmlspecialchars($row['canfirst'])." ".htmlspecialchars($row['canlast']);
+                  if (!empty($row['partylist'])) {
+                    echo " <span style='font-size:0.95rem; color:#4682B4; font-weight:600;'>[ ".htmlspecialchars($row['partylist'])." Party List ]</span>";
+                  }
+                  echo "</span>
                     </div>
                   ";
                 }

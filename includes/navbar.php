@@ -32,6 +32,7 @@
       vertical-align: middle;
       transition: all 0.3s ease;
       position: relative;
+      transform: scale(1.4);
     }
     .navbar-left .navbar-brand {
       color: white;
@@ -122,6 +123,8 @@
         height: 60px;
         position: relative;
         bottom: 3px;
+        transform: scale(1.3);
+        margin-right: 12px;
       }
       .navbar-left .navbar-brand {
         font-size: 13px;
@@ -161,13 +164,13 @@
 </head>
 
 <body>
-  <header class="main-header fixed-navbar" style="background-color:#d32f2f; border-bottom:none;">
-    <nav class="navbar navbar-static-top" style="background-color:#d32f2f; box-shadow:none; border-bottom:none;">
-      <div class="container-fluid" style="background-color:#d32f2f; border-bottom:none;">
+  <header class="main-header fixed-navbar" style="background-color:#3137ebe2; border-bottom:none;">
+    <nav class="navbar navbar-static-top" style="background-color:#3137ebe2; box-shadow:none; border-bottom:none;">
+      <div class="container-fluid" style="background-color:#3137ebe2; border-bottom:none;">
         <div class="row w-100 align-items-center" style="margin:0; border-bottom:none;">
           <!-- Left side -->
           <div class="col-xs-6 navbar-left">
-            <img src="images/AUSSC_logo.png" alt="AUSSC Logo">
+            <img src="images/au_comelec.png" alt="AUSSC Logo">
             <a href="#" class="navbar-brand">
               <b>
                 <span class="brand-full">AUSSC - VOTING MANAGEMENT SYSTEM</span>

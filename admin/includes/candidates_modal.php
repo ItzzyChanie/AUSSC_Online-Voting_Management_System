@@ -11,7 +11,7 @@
               box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-              style="background: #d32f2f; 
+              style="background: #3137ebe2; 
               color: #fff; 
               border-top-left-radius: 16px; 
               border-top-right-radius: 16px; 
@@ -73,7 +73,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -222,7 +222,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -371,7 +371,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
@@ -456,7 +456,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
 
             <div class="modal-header" 
-                style="background: #d32f2f; 
+                style="background: #3137ebe2; 
                 color: #fff; 
                 border-top-left-radius: 16px; 
                 border-top-right-radius: 16px; 
