@@ -12,7 +12,7 @@
   <a href="#" class="logo " style="background-color: #3137ebe2">
 
     <!-- mini logo for sidebar mini 50x50 pixels -->
-  <span class="logo-mini" style="background-color: #3137ebe2"><b>AU</b>VS</span>
+  <span class="logo-mini" style="background-color: #3137ebe2"><b>AU</b>MC</span>
 
   <!-- logo for regular state and mobile devices -->
   <span class="logo-lg " 
@@ -24,7 +24,7 @@
 
     <marquee behavior="scroll" direction="left" style="display: flex; align-items: center;">
     <img src="/votesystem/images/au_comelec.png" alt="AUSSC Logo" style="height:45px; position: relative; top: -3px; transform: scale(1.6);">
-      AUSSC - Voting Management System
+      AU - Main Comelec
     </marquee>
   </span>
   </a>

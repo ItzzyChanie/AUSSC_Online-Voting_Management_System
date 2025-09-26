@@ -377,7 +377,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			margin-left: -8px;
 			font-size: 1rem;
 			font-weight: 600;
-			color: #fff; 
+			color: #2f42d3ff; 
 		}
 		.burger span {
 			background: #06046cd8;
@@ -392,13 +392,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<!-- Logo to top-left -->
 	<div class="logo-container d-flex align-items-center">
 		<img class="header-logo" src="images/au_comelec.png" alt="AUSSC Logo">
-		<span class="logo-text-mobile">AUSSC - VMS</span>
+		<span class="logo-text-mobile">AUMC - VMS</span>
 	</div>
 
 	<!-- Centered nav (desktop only) -->
 	<ul class="d-flex desktop-nav nav-center">
 		<li><a class="nav-link" href="#">Result</a></li>
-		<li><a class="nav-link" href="#">About</a></li>
+		<li><a class="nav-link" href="about.php">About</a></li>
 		<li><a class="nav-link" href="#">Executives</a></li>
 		<li><a class="nav-link active" href="#">Sign in</a></li>
 	</ul>
@@ -417,7 +417,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<div class="mobile-menu-panel" id="mobileMenuPanel">
 		<button class="close-btn" id="closeMobileMenu" aria-label="Close menu">&times;</button>
 		<a href="#">Result</a>
-		<a href="#">About</a>
+		<a href="about.php">About</a>
 		<a href="#">Executives</a>
 		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #e2e23eff;">Sign in</a>
 	</div>
@@ -427,7 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
-				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">Welcome to AUSSC<br><span style="font-size:3rem; color:#1b22edff; font-weight:800;">Voting Management System</span></div>
+				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">AU - Main Comelec<br><span style="font-size:3rem; color:#1b22edff; font-weight:800;">Voting Management System</span></div>
 				<div class="mb-4" style="color:#000; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 30px;">

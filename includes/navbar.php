@@ -173,8 +173,8 @@
             <img src="images/au_comelec.png" alt="AUSSC Logo">
             <a href="#" class="navbar-brand">
               <b>
-                <span class="brand-full">AUSSC - VOTING MANAGEMENT SYSTEM</span>
-                <span class="brand-short">AUSSC - VMS</span>
+                <span class="brand-full">AU - MAIN COMELEC</span>
+                <span class="brand-short">AUMC - VMS</span>
               </b>
             </a>
           </div>

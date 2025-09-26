@@ -102,7 +102,7 @@ if (isset($_SESSION['admin'])) {
 		</div>
 		<div class="flex-grow-1 d-flex justify-content-center">
 			<ul class="d-flex" style="gap:2.5rem; list-style:none; margin:0; padding:0;">
-				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500; color:#3137ebe2;">About</a></li>
+				<li><a class="nav-link" href="about.php" style="padding-left:1rem; padding-right:1rem; font-weight:500; color:#3137ebe2;">About</a></li>
 				<li><a class="nav-link" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:500; color:#3137ebe2;">Executives</a></li>
 				<li><a class="nav-link active" href="#" style="padding-left:1rem; padding-right:1rem; font-weight:700; border-bottom:2px solid #3137ebe2; color:#3137ebe2;">Sign in</a></li>
 			</ul>
@@ -112,7 +112,7 @@ if (isset($_SESSION['admin'])) {
 	<div class="container-fluid mt-5">
 		<div class="d-flex main-row" style="min-height: 80vh; justify-content:center; align-items:center;">
 			<div class="left-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
-				<div class="login-title">Welcome to AUSSC<br>Voting Management System<br>Admin</div>
+				<div class="login-title">AU - Main Comelec<br>Voting Management System<br>Admin</div>
 				<div class="login-sub">Sign in to start your admin session</div>
 				<div class="logo-row" style="margin-top: -10px; gap: 10px;">
 					<img src="../images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
