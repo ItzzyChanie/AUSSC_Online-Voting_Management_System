@@ -12,5 +12,5 @@
       <b>All rights reserved</b>
     </div  >
     
-    <b style="color:white ; font-size: 13px"><strong>Copyright &copy; Arellano University </strong></b>
+    <b style="color:white ; font-size: 13px"><strong>Copyright  &copy;  AU - Main Comelec Voting Systen. All Rights Reserved. </strong></b>
 </footer>

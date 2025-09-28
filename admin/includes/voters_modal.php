@@ -74,20 +74,26 @@
 
                   <!-- Course Dropdown -->
                   <div class="form-group">
-                      <label for="course" class="col-sm-3 control-label">Course</label>
+                      <label for="course" class="col-sm-3 control-label">Program</label>
                       <div class="col-sm-9">
                         <select class="form-control" id="course" name="course" required>
-                          <option value="">Select Course</option>
+                          <option value="">-- Select Course --</option>
                           <option value="BS Computer Science">BS Computer Science</option>
                           <option value="BS Information Technology">BS Information Technology</option>
                           <option value="BS Criminology">BS Criminology</option>
-                          <option value="BS Psychology">BS Psychology</option>
-                          <option value="BS Hospitality Management">BS Hospitality Management</option>
                           <option value="BS Business Administration">BS Business Administration</option>
                           <option value="BS Accountancy">BS Accountancy</option>
                           <option value="BS Education">BS Education</option>
+                          <option value="BS Hospitality Management">BS Hospitality Management</option>
                           <option value="BS Tourism Management">BS Tourism Management</option>
-                          <!-- Add more courses as needed -->
+                          <option value="BS Nursing">BS Nursing</option>
+                          <option value="BS Psychology">BS Psychology</option>
+                          <option value="BS Physical Therapy">BS Physical Therapy</option>
+                          <option value="BS Radiologic Technology">BS Radiologic Technology</option>
+                          <option value="BS Medical Technology">BS Medical Technology</option>
+                          <option value="BS Pharmacy">BS Pharmacy</option>
+                          <option value="BS Midwifery">BS Midwifery</option>
+
                         </select>
                       </div>
                   </div>

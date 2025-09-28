@@ -13,7 +13,6 @@
     <section class="content-header">
     </section>
 
-    <!-- Move breadcrumb slightly lower, but still at the top of content-wrapper -->
     <div style="position: relative; top: 35px; display: flex; align-items: center;">
       <span 
         style="margin-right: 20px; 
@@ -86,7 +85,7 @@
                   <th>Lastname</th>
                   <th>Firstname</th>
                   <th>Level</th>
-                  <th>Course</th>
+                  <th>Program</th>
                   <th>Photo</th>
                   <th>Student ID</th>
 

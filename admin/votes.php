@@ -13,7 +13,6 @@
     <section class="content-header" style= "color:black ; font-size: 17px; font-family:Times;">
     </section>
     
-    <!-- Move breadcrumb slightly lower, but still at the top of content-wrapper -->
     <div style="position: relative; top: 40px; display: flex; align-items: center;">
 
       <span 
@@ -87,7 +86,7 @@
                   <th>CANDIDATE</th>
                   <th>VOTER</th>
                   <th>Level</th>
-                  <th>Course</th>
+                  <th>Program</th>
                 </thead>
                 <tbody>
                   <?php

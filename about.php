@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>About AUSSC Online Voting Management System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -13,11 +14,12 @@
     }
     .header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
       align-items: center;
       padding: 5px 24px 5px 24px;
       background: #2563eb;
       min-height: 56px;
+      position: relative;
     }
     .header .logo {
       font-weight: bold;
@@ -35,55 +37,103 @@
     .header nav a {
       color: #fff !important;
       text-decoration: none;
-      margin-left: 28px;
+      margin: 0 12px;
       font-weight: 500;
       font-size: 1.05rem;
       letter-spacing: 1px;
       transition: color 0.2s;
+      position: relative;
+    }
+    .desktop-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      gap: 35px;
+    }
+    .header nav a.active {
+      text-decoration: none;
+    }
+    .header nav a.active::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
     }
     .header nav a:hover {
       color: #c7e0fa !important;
     }
-    .mobile-menu-btn {
+    .burger {
+      width: 34px;
+      height: 34px;
       display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 20;
       background: none;
       border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
       margin-left: 8px;
     }
-    .mobile-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 16px;
-      background: #2563eb;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      min-width: 160px;
-      z-index: 100;
-    }
-    .mobile-dropdown a {
+    .burger span {
       display: block;
+      width: 26px;
+      height: 4px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 100vh;
+      background: #2563eb;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.08);
+      display: none;
+      flex-direction: column;
+      padding: 2.5rem 1.5rem 1rem 1.5rem;
+      z-index: 100;
+      animation: slideIn 0.2s;
+    }
+    @keyframes slideIn {
+      from { right: -220px; }
+      to { right: 0; }
+    }
+    .mobile-menu-panel.show {
+      display: flex;
+    }
+    .mobile-menu-panel a {
+      font-size: 1.1rem;
       color: #fff !important;
-      padding: 12px 20px;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
       text-decoration: none;
-      font-size: 1.05rem;
-      border-bottom: 1px solid #1a47b8;
-      margin: 0;
     }
-    .mobile-dropdown a:last-child {
-      border-bottom: none;
-    }
-    .mobile-dropdown a:hover {
-      background: #1a47b8;
+    .mobile-menu-panel .close-btn {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      font-size: 2rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
     .hero {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       padding: 48px;
+      padding-left: 95px;
       background: linear-gradient(120deg, #eaf3fc 60%, #c7e0fa 100%);
       border-radius: 0 0 40px 40px;
       position: relative;
@@ -93,6 +143,7 @@
       flex: 1 1 350px;
       min-width: 300px;
       z-index: 2;
+      margin-top: 60px;
     }
     .hero-title {
       font-size: 2.5rem;
@@ -123,6 +174,7 @@
     .features-section {
       background: #f6fafd;
       padding: 40px 48px 24px 48px;
+      padding-left: 95px;
     }
     .features-title {
       font-size: 2rem;
@@ -160,6 +212,7 @@
     .commitment-section {
       background: #eaf3fc;
       padding: 40px 48px 48px 48px;
+      padding-left: 97px;
     }
     .commitment-title {
       font-size: 2rem;
@@ -194,28 +247,47 @@
         max-height: 60px;
         transform: scale(1.7);
         margin-bottom: 0;
+        margin-left: 0px;
+        position: relative;
+        right: 10px;
+        bottom: 5px;
       }
       .header nav {
         display: none;
       }
-      .mobile-menu-btn {
-        display: block;
+      .burger {
+        display: flex !important;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
       }
-      .mobile-dropdown {
+      .mobile-menu-panel {
         display: none;
       }
-      .mobile-dropdown.open {
-        display: block;
+      .mobile-menu-panel.show {
+        display: flex;
       }
       .hero {
         flex-direction: column;
         padding: 10px;
+        gap: 0;
+      }
+      .hero-text {
+        margin-bottom: 0;
+        margin-top: 30px;
+      }
+      .hero-illustration {
+        display: none !important;
+        margin-top: 0;
       }
       .hero-title {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
       .hero-desc {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
       }
       .hero-illustration {
         justify-content: center;
@@ -226,17 +298,35 @@
       }
       .features-section, .commitment-section {
         padding: 10px;
+        padding-bottom: 30px;
       }
       .features-title, .commitment-title {
-        font-size: 1.2rem;
+        font-size: 1.48rem;
+      }
+      .features-section {
+        padding-left: 10px !important;
+        padding-bottom: 20px !important;
+        margin: 0 !important;
       }
       .features-list {
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: column !important;
+        gap: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
       }
       .feature-item {
-        min-width: 0;
+        min-width: 0 !important;
         font-size: 0.98rem;
+        margin: 0 0 15px 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        min-height: 0 !important;
+        box-sizing: border-box !important;
+      }
+      .feature-item:last-child {
+        margin-bottom: 0 !important;
       }
       .feature-icon {
         font-size: 1.1rem;
@@ -252,34 +342,46 @@
     }
   </style>
 </head>
+
 <body>
   <header class="header">
-    <div class="logo">
+    <div class="logo" style="flex:0 0 auto;">
       <img src="images/au_comelec.png" alt="AUSSC Comelec Logo">
     </div>
+
     <nav class="desktop-nav">
-      <a href="login.php">SIGN IN</a>
-      <a href="about.php">ABOUT</a>
-      <a href="#">RESULT</a>
-      <a href="#">EXECUTIVES</a>
+      <a href="#">Result</a>
+      <a href="about.php" class="active">About</a>
+      <a href="#">Executives</a>
+      <a href="login.php">Sign in</a>
     </nav>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
-    <div class="mobile-dropdown" id="mobileDropdown">
-      <a href="login.php">SIGN IN</a>
-      <a href="about.php">ABOUT</a>
-      <a href="#">RESULT</a>
-      <a href="#">EXECUTIVES</a>
+
+    <button class="burger" id="burgerMenu" aria-label="Open menu" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+      <button class="close-btn" id="closeMobileMenu" aria-label="Close menu">&times;</button>
+      <a href="login.php">Sign in</a>
+      <a href="about.php" class="active">About</a>
+      <a href="#">Result</a>
+      <a href="#">Executives</a>
     </div>
   </header>
+
   <section class="hero">
     <div class="hero-text">
-      <div class="hero-title">About AUSSC<br>Online Voting Management System</div>
+      <div class="hero-title">About AUMC<br>Voting Management System</div>
       <div class="hero-desc">
-        The AUSSC Online Voting Management System is a secure and user-friendly digital platform designed to promote transparency, efficiency and accessibility.
+        The AUMC Voting Management System is an innovative online platform developed exclusively for the Arellano University School Government elections. 
+        It is designed to make the voting process faster, more secure, and more accessible for students, ensuring fair and transparent elections.
+        Our system provides student voters with a simple and reliable way to cast their votes anytime within the scheduled voting period. It eliminates manual counting errors through automated tallying and guarantees accuracy in results.
       </div>
     </div>
+
     <div class="hero-illustration">
-      <!-- Simple SVG illustration (replace with your own or use an image if needed) -->
       <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="160" cy="200" rx="140" ry="20" fill="#c7e0fa"/>
         <circle cx="80" cy="120" r="40" fill="#e57373"/>
@@ -292,39 +394,51 @@
       </svg>
     </div>
   </section>
+  
   <section class="features-section">
     <div class="features-title">Key Features</div>
-    <div class="features-list">
+    <div class="feature-item">
+        <span class="feature-icon">✔️</span>
+        <div class="feature-content">
+          <strong>Automated Tallying & Graphical Results</strong>
+          Votes are counted instantly and displayed in real-time charts and graphs for better transparency.
+        </div>
+      </div>
+    </div>
       <div class="feature-item">
         <span class="feature-icon">✔️</span>
         <div class="feature-content">
           <strong>Secure Login</strong>
-          Protects voter identity and ensures only registered students can
+          Protects voter identity and ensures only registered AU students can access the system.
         </div>
       </div>
+    </div>
       <div class="feature-item">
         <span class="feature-icon">✔️</span>
         <div class="feature-content">
-          <strong>Voter List Management</strong>
-          Provides a comprehensive database of eligible voters.
+          <strong>Secure Online Voting</strong>
+          Each student can vote once, ensuring fairness and integrity.
         </div>
       </div>
+    </div>
       <div class="feature-item">
         <span class="feature-icon">✔️</span>
         <div class="feature-content">
           <strong>Candidate Profiles</strong>
-          Displays detailed information about candidates, their positions.
+          Displays detailed information about candidates, their positions, photos, platform, and their party affiliations.
         </div>
       </div>
-      <div class="feature-item">
+    </div>
+    <div class="feature-item">
         <span class="feature-icon">✔️</span>
         <div class="feature-content">
-          <strong>Real-Time Results</strong>
-          Automatically tallies votes and generates accurate outcomes
+          <strong>User-Friendly Interface</strong>
+          Simple design for both administrators and voters.
         </div>
       </div>
     </div>
   </section>
+
   <section class="commitment-section">
     <div class="commitment-title">Our Commitment</div>
     <div class="commitment-text">
@@ -332,22 +446,35 @@
       Together, we build a stronger and more inclusive student government by ensuring accessibility, security, and trust in every election.
     </div>
   </section>
+
   <footer style="background:#1a2a3a;color:#fff;text-align:center;padding:18px 0;font-size:1rem;margin-top:32px;">
-    &copy; <?php echo date('Y'); ?> AUSSC Online Voting Management System. All rights reserved.
+    &copy; <?php echo date('Y'); ?> AUMC - Voting Management System.<br> All rights reserved.
   </footer>
 </body>
 <script>
-// Mobile dropdown toggle
-const menuBtn = document.getElementById('mobileMenuBtn');
-const dropdown = document.getElementById('mobileDropdown');
-document.addEventListener('click', function(e) {
-  if (menuBtn && dropdown) {
-    if (menuBtn.contains(e.target)) {
-      dropdown.classList.toggle('open');
-    } else if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('open');
+
+// Burger menu toggle for mobile
+const burgerMenu = document.getElementById('burgerMenu');
+const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+if (burgerMenu && mobileMenuPanel && closeMobileMenu) {
+  burgerMenu.addEventListener('click', function() {
+    mobileMenuPanel.classList.add('show');
+  });
+  closeMobileMenu.addEventListener('click', function() {
+    mobileMenuPanel.classList.remove('show');
+  });
+  // Optional: close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (
+      mobileMenuPanel.classList.contains('show') &&
+      !mobileMenuPanel.contains(e.target) &&
+      !burgerMenu.contains(e.target)
+    ) {
+      mobileMenuPanel.classList.remove('show');
     }
-  }
-});
+  });
+}
 </script>
 </html>

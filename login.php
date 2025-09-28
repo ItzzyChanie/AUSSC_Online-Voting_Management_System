@@ -58,23 +58,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	.main-logo {
 		width: 40px;
 		height: 40px;
-		background: #1b22edff;
+		background: #2563eb;
 		border-radius: 8px;
 		display: inline-block;
 		margin-right: 10px;
 	}
 	.nav-link,
 	.desktop-nav.nav-center li a {
-		color: #1b22edff !important;
+		color: #2563eb !important;
 	}
 	.nav-link.active,
 	.desktop-nav.nav-center li a.active {
 		font-weight: bold;
-		border-bottom: 2px solid #1b22edff;
-		color: #1b22edff !important;
+		border-bottom: 2px solid #2563eb;
+		color: #2563eb !important;
 	}
 	.btn-red {
-		background: #1b22edff;
+		background: #2563eb;
 		color: #fff;
 		font-weight: bold;
 		font-size: 1.2rem;
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		margin-bottom: 1.5rem;
 	}
 	.explore-btn {
-		background: #1b22edff;
+		background: #2563eb;
 		color: #ffff;
 		font-weight: bold;
 		border-radius: 8px;
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	.login-form label { font-weight: 500; }
 	.login-form .form-check-label { font-weight: 400; }
 	.forgot-link { font-weight: 600; color: #222; text-decoration: none; }
-	.forgot-link:hover { color: #2f42d3ff; }
+	.forgot-link:hover { color: #2563eb; }
 
 	@media (max-width: 900px) {
 		.main-row { flex-direction: column; }
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		display: block;
 		width: 26px;
 		height: 4px;
-		background: #2f42d3ff;
+		background: #2563eb;
 		margin: 4px 0;
 		border-radius: 2px;
 		transition: all 0.3s;
@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		right: 0;
 		width: 220px;
 		height: 100vh;
-		background: #0c12a7ff;
+		background: #2563eb;
 		box-shadow: -2px 0 10px rgba(0,0,0,0.08);
 		display: none;
 		flex-direction: column;
@@ -235,14 +235,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	.mobile-menu-panel a {
 		font-size: 1.1rem;
-		color: #ffffffff !important; /* blue for mobile */
+		color: #ffffffff !important;
 		font-weight: 600;
 		margin-bottom: 1.2rem;
 		text-decoration: none;
 	}
 	@media (min-width: 601px) {
 		.mobile-menu-panel a {
-			color: #fff !important; /* white for desktop */
+			color: #fff !important; 
 		}
 	}
 	.mobile-menu-panel .close-btn {
@@ -250,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		top: 1.1rem;
 		right: 1.1rem;
 		font-size: 2rem;
-		color: #2f42d3ff;
+		color: #fff;
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -302,7 +302,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		padding: 0 1rem;
 		font-weight: 500;
 		text-decoration: none;
-		color: #2f42d3ff;
+		color: #2563eb;
 	}
 
 	.desktop-nav.nav-center li a.active {
@@ -333,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	.nav-center li a.active {
 		font-weight: 700;
-		border-bottom: 2px solid #2f42d3ff;
+		border-bottom: 2px solid #2563eb;
 	}
 
 	@media (max-width: 767px) {
@@ -377,7 +377,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			margin-left: -8px;
 			font-size: 1rem;
 			font-weight: 600;
-			color: #2f42d3ff; 
+			color: #2563eb; 
 		}
 		.burger span {
 			background: #06046cd8;
@@ -419,7 +419,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<a href="#">Result</a>
 		<a href="about.php">About</a>
 		<a href="#">Executives</a>
-		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #e2e23eff;">Sign in</a>
+		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #fff;">Sign in</a>
 	</div>
 	
 	<div class="container-fluid mt-5">
@@ -428,7 +428,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
 				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">AU - Main Comelec<br><span style="font-size:3rem; color:#1b22edff; font-weight:800;">Voting Management System</span></div>
-				<div class="mb-4" style="color:#000; font-size:1rem;">Think wise and Cast your vote now in AUSSC - Voting Management System</div>
+				<div class="mb-4" style="color:#000; font-size:1rem;">Think wise and Cast your vote now in AUMC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 30px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
