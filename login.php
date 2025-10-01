@@ -37,12 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<style>
+	html {
+		overflow-x: hidden;
+		max-width: 100vw;
+	}
 	body {
 		position: relative;
 		min-height: 100vh;
 		font-family: 'Montserrat', Arial, sans-serif;
 		background: url('images/white-blue.jpg') no-repeat center center fixed;
 		background-size: cover;
+		overflow-x: hidden;
+		width: 100vw;
+		max-width: 100vw;
+		box-sizing: border-box;
 	}
 	body::before {
 		content: "";
@@ -217,13 +225,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		top: 0;
 		right: 0;
 		width: 220px;
-		height: 100vh;
+		height: 115vh;
 		background: #2563eb;
 		box-shadow: -2px 0 10px rgba(0,0,0,0.08);
 		display: none;
 		flex-direction: column;
 		padding: 2.5rem 1.5rem 1rem 1.5rem;
-		z-index: 100;
+		z-index: 150;
 		animation: slideIn 0.2s;
 	}
 	@keyframes slideIn {
@@ -259,7 +267,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	.header-logo {
 		height: 100px; 
 		max-width: 100%;
-		
 		position: relative;
 		left: 47px;
 		bottom: 40px;
@@ -372,15 +379,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			display: flex;
 			align-items: center;
 		}
+		.header-logo {
+			position: relative;
+			top: -30px !important;
+		}
 		.logo-text-mobile {
 			display: inline-block;
 			margin-left: -8px;
 			font-size: 1rem;
 			font-weight: 600;
-			color: #2563eb; 
+			color: #2563eb;
+			position: relative;
+			top: -30px;
+		}
+		.burger {
+			position: relative;
+			top: -30px;
 		}
 		.burger span {
-			background: #06046cd8;
+			background: #2563eb;
+		}
+		/* Ensure mobile-center-content is not affected */
+		.mobile-center-content {
+			margin-top: 0 !important;
 		}
 	}
 </style>
@@ -423,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</div>
 	
 	<div class="container-fluid mt-5">
-		<div class="d-flex main-row" style="position: relative; bottom: 70px;">
+		<div class="d-flex main-row" style="position: relative; bottom: 90px;">
 
 			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
@@ -438,7 +459,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 
 			<!-- Mobile center content (hidden on desktop) -->
-			<div class="mobile-center-content" style="display:none; width:100%;">
+			<div class="mobile-center-content" style="display:none; width:100%; position: relative; top: 20px;">
 				<a href="running_candidates.php" class="explore-btn mb-3" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 1px; margin-bottom: 1px; margin-top: 1px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
@@ -448,11 +469,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 
 			<!-- Login form column -->
-			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw;">
+			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw; position: relative; top: 20px;">
 				<form class="login-form" style="max-width:520px; min-width:400px; border: 2px solid blue; background: rgba(252, 253, 254, 0.44); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
-					<div style="position:relative; padding-left:70px; ">
-						<img src="images/AUSSC_logo.png" alt="AUSSC Logo" style="height:200px; position:relative;  ">
-					</div>
+							<div class="login-logo-container" style="position:relative; padding-left:97px; transform: scale(1.7); ">
+								<img src="images/au_comelec.png" alt="AU Comelec Logo" style="height:200px; position:relative;">
+							</div>
 
 					<?php if (!empty($error)): ?>
 						<div class="alert alert-danger text-center mb-3"> <?php echo $error; ?> </div>
@@ -477,6 +498,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				</form>
 			</div>
 		</div>
+			<style>
+				@media (max-width: 600px) {
+					.login-logo-container {
+						padding-left: 75px !important;
+					}
+				}
+			</style>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
