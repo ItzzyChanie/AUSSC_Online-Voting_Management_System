@@ -91,6 +91,18 @@ if (isset($_SESSION['admin'])) {
 			.left-col, .right-col { width: 100%; }
 			.right-col { margin-top: 2rem; }
 		}
+		.login-au-comelec-logo {
+			transform: scale(1.8);
+			pointer-events: none;
+			z-index: 1;
+			display: block;
+			margin: 0 auto;
+		}
+		@media (max-width: 600px) {
+			.login-au-comelec-logo {
+				transform: scale(1.5);
+			}
+		}
 	</style>
 </head>
 
@@ -124,8 +136,8 @@ if (isset($_SESSION['admin'])) {
 
 			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="flex:1;">
 				<form class="login-form w-100" style="max-width:420px; min-width:320px; background: rgba(255, 255, 255, 0.4); padding: 24px 32px; border-radius: 16px; min-height: 320px; border:2px solid #3137ebe2;" method="POST" action="login.php">
-					<div style="text-align:center; margin-bottom:1rem; transform: scale(1.8);">
-						<img src="../images/au_comelec.png" alt="AUSSC Logo" style="height:210px;">
+					<div style="text-align:center; margin-bottom:1rem;">
+						<img src="../images/au_comelec.png" alt="AUSSC Logo" class="login-au-comelec-logo" style="height:210px;">
 					</div>
 
 					<?php

@@ -37,20 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<style>
-	html {
-		overflow-x: hidden;
-		max-width: 100vw;
-	}
-	body {
+	body 
+	{
 		position: relative;
 		min-height: 100vh;
 		font-family: 'Montserrat', Arial, sans-serif;
 		background: url('images/white-blue.jpg') no-repeat center center fixed;
 		background-size: cover;
-		overflow-x: hidden;
-		width: 100vw;
-		max-width: 100vw;
-		box-sizing: border-box;
 	}
 	body::before {
 		content: "";
@@ -104,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	.welcome-title {
 		font-size: 2.8rem;
 		font-weight: 700;
-		color: #1b22edff;
+		color: #2563eb;
 		margin-bottom: 0.5rem;
 	}
 	.welcome-sub {
@@ -225,13 +218,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		top: 0;
 		right: 0;
 		width: 220px;
-		height: 115vh;
+		height: 100vh;
 		background: #2563eb;
 		box-shadow: -2px 0 10px rgba(0,0,0,0.08);
 		display: none;
 		flex-direction: column;
 		padding: 2.5rem 1.5rem 1rem 1.5rem;
-		z-index: 150;
+		z-index: 100;
 		animation: slideIn 0.2s;
 	}
 	@keyframes slideIn {
@@ -250,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	@media (min-width: 601px) {
 		.mobile-menu-panel a {
-			color: #fff !important; 
+			color: #fff !important;
 		}
 	}
 	.mobile-menu-panel .close-btn {
@@ -381,29 +374,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 		.header-logo {
 			position: relative;
-			top: -30px !important;
+			top: -30px;
+			left: -18px;
 		}
 		.logo-text-mobile {
 			display: inline-block;
 			margin-left: -8px;
 			font-size: 1rem;
 			font-weight: 600;
-			color: #2563eb;
+			color: #2563eb; 
 			position: relative;
 			top: -30px;
+			left: -18px;
 		}
 		.burger {
 			position: relative;
 			top: -30px;
+			color: #2563eb;
 		}
 		.burger span {
-			background: #2563eb;
+			background: #06046cd8;
 		}
-		/* Ensure mobile-center-content is not affected */
 		.mobile-center-content {
 			margin-top: 0 !important;
+	}
+}
+	@media (min-width: 901px) {
+		.login-au-comelec-logo {
+			transform: scale(1.7);
+			display: block;
+			pointer-events: none;
+			height: 200px !important;
+			width: auto !important;
+			max-width: 100%;
+			margin: 0 auto;
+			padding-right: 55px;
 		}
 	}
+	@media (max-width: 600px) {
+	.login-au-comelec-logo {
+		transform: scale(1.7);
+		pointer-events: none;
+		z-index: 1;
+		display: block;
+		margin: 0 auto;
+		position: relative;
+		right: 45px;
+		bottom: 7px;
+	}
+}
 </style>
 
 </head>
@@ -442,13 +461,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<a href="#">Executives</a>
 		<a href="#" class="active" style="font-weight:700; border-bottom:2px solid #fff;">Sign in</a>
 	</div>
-	
 	<div class="container-fluid mt-5">
-		<div class="d-flex main-row" style="position: relative; bottom: 90px;">
+		<div class="d-flex main-row" style="position: relative; bottom: 70px;">
 
 			<!-- Desktop/tablet left col -->
 			<div class="left-col d-flex flex-column justify-content-center align-items-start" style="flex:1; padding-left: 5vw;">
-				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">AU - Main Comelec<br><span style="font-size:3rem; color:#1b22edff; font-weight:800;">Voting Management System</span></div>
+				<div class="welcome-title w-100" style="line-height:1.1; text-align:left;">AU - Main Comelec<br><span style="font-size:3rem; color:#2563eb; font-weight:800;">Voting Management System</span></div>
 				<div class="mb-4" style="color:#000; font-size:1rem;">Think wise and Cast your vote now in AUMC - Voting Management System</div>
 				<a href="running_candidates.php" class="explore-btn mb-5" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 5px; position: relative; bottom: 30px;">
@@ -459,7 +477,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 
 			<!-- Mobile center content (hidden on desktop) -->
-			<div class="mobile-center-content" style="display:none; width:100%; position: relative; top: 20px;">
+			<div class="mobile-center-content" style="display:none; width:100%;">
 				<a href="running_candidates.php" class="explore-btn mb-3" style="text-decoration: none;">View Running Candidates</a>
 				<div style="display: flex; align-items: center; gap: 1px; margin-bottom: 1px; margin-top: 1px;">
 					<img src="images/au logo.png" alt="Au Logo" style="width:50px; max-width:50px;">
@@ -469,11 +487,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 
 			<!-- Login form column -->
-			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw; position: relative; top: 20px;">
+			<div class="right-col d-flex flex-column justify-content-center align-items-center" style="position:relative; padding-right: 5.5vw;">
 				<form class="login-form" style="max-width:520px; min-width:400px; border: 2px solid blue; background: rgba(252, 253, 254, 0.44); padding: 12px 32px; border-radius: 16px; min-height: 320px;" method="POST" action="">
-							<div class="login-logo-container" style="position:relative; padding-left:97px; transform: scale(1.7); ">
-								<img src="images/au_comelec.png" alt="AU Comelec Logo" style="height:200px; position:relative;">
-							</div>
+					<div style="position:relative; padding-left:97px; ">
+						<img src="images/au_comelec.png" alt="AU Comelec Logo" class="login-au-comelec-logo" style="height:200px; position:relative;">
+					</div>
 
 					<?php if (!empty($error)): ?>
 						<div class="alert alert-danger text-center mb-3"> <?php echo $error; ?> </div>
@@ -498,13 +516,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				</form>
 			</div>
 		</div>
-			<style>
-				@media (max-width: 600px) {
-					.login-logo-container {
-						padding-left: 75px !important;
-					}
-				}
-			</style>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -519,19 +530,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (burger && mobileMenu && closeBtn) {
 			burger.addEventListener('click', function() {
 				mobileMenu.classList.add('show');
-				document.body.style.overflow = 'hidden';
 			});
 
 			closeBtn.addEventListener('click', function() {
 				mobileMenu.classList.remove('show');
-				document.body.style.overflow = '';
 			});
 
 			// Close menu on link click (for SPA feel)
 			mobileMenu.querySelectorAll('a').forEach(function(link) {
 				link.addEventListener('click', function() {
 					mobileMenu.classList.remove('show');
-					document.body.style.overflow = '';
 				});
 			});
 		}
